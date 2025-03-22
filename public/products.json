@@ -6,7 +6,7 @@
         "name": "Vanilla Latte",
         "image": "/images/product_1.png",
         "rating": 4.8,
-        "price": "21K",
+        "price": "21",
         "tags": [
           "Hot",
           "Cold"
@@ -18,7 +18,7 @@
         "name": "Espresso",
         "image": "/images/product_2.png",
         "rating": 4.9,
-        "price": "12K",
+        "price": "12",
         "tags": [
           "Hot"
         ]
@@ -28,7 +28,7 @@
         "name": "Hazelnut Latte",
         "image": "/images/product_3.png",
         "rating": 4.8,
-        "price": "23K",
+        "price": "23",
         "tags": [
           "Hot",
           "Cold"
@@ -43,7 +43,7 @@
         "name": "فانيلا لاتيه",
         "image": "/images/product_1.png",
         "rating": 4.8,
-        "price": "21 ألف",
+        "price": "21",
         "tags": [
           "ساخن",
           "بارد"
@@ -55,7 +55,7 @@
         "name": "إسبريسو",
         "image": "/images/product_2.png",
         "rating": 4.9,
-        "price": "12 ألف",
+        "price": "12",
         "tags": [
           "ساخن"
         ]
@@ -65,7 +65,7 @@
         "name": "بندق لاتيه",
         "image": "/images/product_3.png",
         "rating": 4.8,
-        "price": "23 ألف",
+        "price": "23",
         "tags": [
           "ساخن",
           "بارد"

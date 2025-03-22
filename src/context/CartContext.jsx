@@ -7,13 +7,19 @@ export function CartProvider({ children }) {
 
   // ✅ تحميل السلة من localStorage عند بداية التطبيق
   useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCart(savedCart);
+    const savedCart = JSON.parse(localStorage.getItem("cart"));
+    if (savedCart) {
+      setCart(savedCart);
+    }
   }, []);
 
   // ✅ حفظ السلة في localStorage عند كل تغيير
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    if (cart.length > 0) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    } else {
+      localStorage.removeItem("cart");
+    }
   }, [cart]);
 
   // ✅ إضافة منتج إلى السلة
@@ -35,7 +41,30 @@ export function CartProvider({ children }) {
     });
   }
 
-  // ✅ إزالة منتج واحد من نفس النوع
+  // ✅ زيادة العدد أو إضافة المنتج إذا لم يكن موجودًا
+  function addFromCart(id, selectedTag, removeAll = false) {
+    setCart((prevCart) => {
+      let itemExists = false;
+
+      const updatedCart = prevCart
+        .map((item) => {
+          if (item.id === id && item.selectedTag === selectedTag) {
+            itemExists = true;
+            return removeAll ? null : { ...item, quantity: item.quantity + 1 };
+          }
+          return item;
+        })
+        .filter(Boolean);
+
+      if (!itemExists && !removeAll) {
+        updatedCart.push({ id, selectedTag, quantity: 1 });
+      }
+
+      return updatedCart;
+    });
+  }
+
+  // ✅ إزالة منتج واحد من نفس النوع أو كل الكمية
   function removeFromCart(id, selectedTag, removeAll = false) {
     setCart((prevCart) =>
       prevCart
@@ -47,7 +76,7 @@ export function CartProvider({ children }) {
           }
           return item;
         })
-        .filter(Boolean) // إزالة القيم `null`
+        .filter(Boolean)
     );
   }
 
@@ -57,7 +86,7 @@ export function CartProvider({ children }) {
   }
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, addFromCart }}>
       {children}
     </CartContext.Provider>
   );
