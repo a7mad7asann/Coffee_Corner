@@ -1,0 +1,76 @@
+{
+  "en": {
+    "products": [
+      {
+        "id": 1,
+        "name": "Vanilla Latte",
+        "image": "/images/product_1.png",
+        "rating": 4.8,
+        "price": "21K",
+        "tags": [
+          "Hot",
+          "Cold"
+        ],
+        "background": true
+      },
+      {
+        "id": 2,
+        "name": "Espresso",
+        "image": "/images/product_2.png",
+        "rating": 4.9,
+        "price": "12K",
+        "tags": [
+          "Hot"
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Hazelnut Latte",
+        "image": "/images/product_3.png",
+        "rating": 4.8,
+        "price": "23K",
+        "tags": [
+          "Hot",
+          "Cold"
+        ]
+      }
+    ]
+  },
+  "ar": {
+    "products": [
+      {
+        "id": 1,
+        "name": "فانيلا لاتيه",
+        "image": "/images/product_1.png",
+        "rating": 4.8,
+        "price": "21 ألف",
+        "tags": [
+          "ساخن",
+          "بارد"
+        ],
+        "background": true
+      },
+      {
+        "id": 2,
+        "name": "إسبريسو",
+        "image": "/images/product_2.png",
+        "rating": 4.9,
+        "price": "12 ألف",
+        "tags": [
+          "ساخن"
+        ]
+      },
+      {
+        "id": 3,
+        "name": "بندق لاتيه",
+        "image": "/images/product_3.png",
+        "rating": 4.8,
+        "price": "23 ألف",
+        "tags": [
+          "ساخن",
+          "بارد"
+        ]
+      }
+    ]
+  }
+}
