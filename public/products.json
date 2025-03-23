@@ -72,5 +72,91 @@
         ]
       }
     ]
+  },
+  "menu": {
+    "title": {
+      "en": "Special menu for you",
+      "ar": "القائمة الخاصة لك"
+    },
+    "items": [
+      {
+        "name": {
+          "en": "Sandwich",
+          "ar": "ساندويتش"
+        },
+        "description": {
+          "en": "Bread with meat and vegetables",
+          "ar": "خبز مع اللحم والخضروات"
+        },
+        "image": "/images/sandwich.jpg",
+        "price": "12 K",
+        "rating": "4.8"
+      },
+      {
+        "name": {
+          "en": "Hot Milk",
+          "ar": "حليب ساخن"
+        },
+        "description": {
+          "en": "Hot Milk with less sugar",
+          "ar": "حليب ساخن مع سكر أقل"
+        },
+        "image": "/images/hot-milk.jpg",
+        "price": "12 K",
+        "rating": "4.8"
+      },
+      {
+        "name": {
+          "en": "Coffe Ice Cream",
+          "ar": "آيس كريم القهوة"
+        },
+        "description": {
+          "en": "Coffee with ice cream vanilla",
+          "ar": "قهوة مع آيس كريم الفانيليا"
+        },
+        "image": "/images/coffee-ice-cream.jpg",
+        "price": "12 K",
+        "rating": "4.8"
+      },
+      {
+        "name": {
+          "en": "Cappuccino",
+          "ar": "كابتشينو"
+        },
+        "description": {
+          "en": "Hot Cappuccino",
+          "ar": "كابتشينو ساخن"
+        },
+        "image": "/images/cappuccino.jpg",
+        "price": "12 K",
+        "rating": "4.8"
+      },
+      {
+        "name": {
+          "en": "Moccacino",
+          "ar": "موكا سينو"
+        },
+        "description": {
+          "en": "Hot Moccacino",
+          "ar": "موكا سينو ساخن"
+        },
+        "image": "/images/moccacino.jpg",
+        "price": "12 K",
+        "rating": "4.8"
+      },
+      {
+        "name": {
+          "en": "Waffle Ice Cream",
+          "ar": "وافل مع آيس كريم"
+        },
+        "description": {
+          "en": "Waffle with ice cream",
+          "ar": "وافل مع الآيس كريم"
+        },
+        "image": "/images/waffle-ice-cream.jpg",
+        "price": "12 K",
+        "rating": "4.8"
+      }
+    ]
   }
 }

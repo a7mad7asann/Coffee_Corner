@@ -28,7 +28,7 @@ export default function Cart() {
   const handleCheckout = () => {
     if (cart.length === 0) return; // تجنب إرسال طلب فارغ
 
-    let message = lang === "en" ? "🛒 Order Details:\n" : "🛍 تفاصيل الطلب:\n";
+    let message = lang === "en" ? "🛒 Order Details:\n" : "🛒 تفاصيل الطلب:\n";
     
     cart.forEach((item, index) => {
       const product = products.find((p) => p.id === item.id);
@@ -41,7 +41,7 @@ export default function Cart() {
     message += lang === "en" ? `\nTotal items: ${cart.length}` : `\nإجمالي المنتجات: ${cart.length}`;
 
     // ✅ رقم الهاتف الذي سيتم إرسال الطلب إليه (غيّره برقمك)
-    const phoneNumber = "01061380485"; // أدخل رقم واتساب بدون "+"
+    const phoneNumber = "201061380485"; // أدخل رقم واتساب بدون "+"
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
     // فتح واتساب
@@ -68,7 +68,7 @@ export default function Cart() {
 
                   <div className="flex justify-between items-center mt-2"> 
                     <p className="font-medium text-orange-500">{cartItem.selectedTag}</p>
-                    <span className="text-l font-medium text-gray-500">{product.price} ريال</span>
+                    <span className="text-l font-medium text-gray-500">{product.price}  { (lang === "en" ? " $ " : " ريال ") } </span>
                   </div>
 
                   <div className="flex justify-evenly items-center mt-3">
@@ -106,22 +106,23 @@ export default function Cart() {
           <div className="mt-6 text-lg font-semibold">
             {lang === "en" ? `Total Price: $${totalPrice.toFixed(2)}` : `إجمالي السعر: ${totalPrice.toFixed(2)} ريال`}
           </div>
-
+          <div className="flex justify-start gap-2 items-center ">
           {/* ✅ زر العودة للصفحة الرئيسية */}
-          <button
-            onClick={() => navigate("/")}
-            className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"
-          >
-            {lang === "en" ? "Back to Home" : "العودة للصفحة الرئيسية"}
-          </button>
+            <button
+              onClick={() => navigate("/")}
+              className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"
+            >
+              {lang === "en" ? "Back to Home" : "العودة للصفحة الرئيسية"}
+            </button>
 
-          {/* ✅ زر إكمال الدفع عبر واتساب */}
-          <button
-            onClick={handleCheckout}
-            className="bg-green-500 text-white px-4 py-2 rounded-md mt-4 ml-2"
-          >
-            {lang === "en" ? "Complete Purchase via WhatsApp" : "إكمال الشراء عبر واتساب"}
-          </button>
+            {/* ✅ زر إكمال الدفع عبر واتساب */}
+            <button
+              onClick={handleCheckout}
+              className="bg-green-500 text-white px-4 py-2 rounded-md mt-4 "
+            >
+              {lang === "en" ? "Complete Purchase via WhatsApp" : "إكمال الشراء عبر واتساب"}
+            </button>
+          </div>
         </div>
       ) : (
         <p className="text-gray-600">{lang === "en" ? "No items in the cart." : "لا توجد منتجات في السلة."}</p>
