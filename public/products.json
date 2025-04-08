@@ -33,6 +33,39 @@
           "Hot",
           "Cold"
         ]
+      },
+      {
+        "id": 4,
+        "name": "Hazelnut Latte",
+        "image": "/images/product_3.png",
+        "rating": 4.8,
+        "price": "23",
+        "tags": [
+          "Hot",
+          "Cold"
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Hazelnut Latte",
+        "image": "/images/product_3.png",
+        "rating": 4.8,
+        "price": "23",
+        "tags": [
+          "Hot",
+          "Cold"
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Hazelnut Latte",
+        "image": "/images/product_3.png",
+        "rating": 4.8,
+        "price": "23",
+        "tags": [
+          "Hot",
+          "Cold"
+        ]
       }
     ]
   },
@@ -62,6 +95,39 @@
       },
       {
         "id": 3,
+        "name": "بندق لاتيه",
+        "image": "/images/product_3.png",
+        "rating": 4.8,
+        "price": "23",
+        "tags": [
+          "ساخن",
+          "بارد"
+        ]
+      },
+      {
+        "id": 4,
+        "name": "بندق لاتيه",
+        "image": "/images/product_3.png",
+        "rating": 4.8,
+        "price": "23",
+        "tags": [
+          "ساخن",
+          "بارد"
+        ]
+      },
+      {
+        "id": 5,
+        "name": "بندق لاتيه",
+        "image": "/images/product_3.png",
+        "rating": 4.8,
+        "price": "23",
+        "tags": [
+          "ساخن",
+          "بارد"
+        ]
+      },
+      {
+        "id": 6,
         "name": "بندق لاتيه",
         "image": "/images/product_3.png",
         "rating": 4.8,

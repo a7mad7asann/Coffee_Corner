@@ -49,24 +49,18 @@
   },
   "about": {
     "en": {
-      "title": "Who Are We?",
-      "description": "We are a real estate company specializing in providing the best residential and commercial solutions for our clients. Our vision is to offer an exceptional experience for those seeking their dream home or a great investment opportunity.",
-      "image": "/images/build1.png",
-      "features": [
-        "Real Estate Expertise",
-        "Professional Team",
-        "Strong Relationships"
-      ]
+      "title": "About us",
+      "subtitle": "We provide quality coffee,\nand ready to deliver.",
+      "description": "We are a company that makes and distributes delicious drinks. Our main product is made with a secret recipe and available in stores worldwide.",
+      "image": "/images/about_coffe.png",
+      "button": "Get your coffee"
     },
     "ar": {
-      "title": "من نحن؟",
-      "description": "نحن شركة متخصصة في مجال العقارات، نقدم أفضل الحلول السكنية والتجارية لعملائنا. رؤيتنا هي تقديم تجربة استثنائية لكل من يبحث عن منزل الأحلام أو فرصة استثمارية مميزة.",
-      "image": "/images/build1.png",
-      "features": [
-        "خبرة في العقارات",
-        "فريق محترف",
-        "علاقات قوية"
-      ]
+      "title": "من نحن",
+      "subtitle": "نحن نقدم قهوة عالية الجودة،\nوجاهزون للتوصيل.",
+      "description": "نحن شركة تقوم بصناعة وتوزيع المشروبات اللذيذة. منتجنا الرئيسي مصنوع بوصفة سرية ومتوفر في المتاجر حول العالم.",
+      "image": "/images/about_coffe.png",
+      "button": "احصل على قهوتك"
     }
   },
   "partnersSection": {

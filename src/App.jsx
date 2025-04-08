@@ -7,7 +7,7 @@ import Home from "./pages/Home.jsx";
 import Cart from "./pages/Cart.jsx"
 import About from "./sections/About";
 import Mques from "./sections/CTA";
-import Gallery from "./sections/Gallery";
+import Products from "./pages/Products.jsx";
 import Form from "./sections/Form";
 import Prtner from "./sections/PopularProduct.jsx";
 import Footer from "./component/Footer";
@@ -49,7 +49,7 @@ function App() {
           <Route path="/cart"     element={<Cart    />} />
           <Route path="/about"    element={<About   />} />
           <Route path="/cta"      element={<Mques   />} />
-          <Route path="/gallery"  element={<Gallery />} />
+          <Route path="/Products"  element={<Products />} />
           <Route path="/form"     element={<Form    />} />
           <Route path="/partners" element={<Prtner  />} />
         </Routes>

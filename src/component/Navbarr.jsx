@@ -56,10 +56,10 @@ export default function Navbar() {
   if (!content) return <p>Loading...</p>;
 
   return (
-    <nav
+    <nav dir={lang === "ar" ? "rtl" : "ltr"}
       className={`fixed w-full top-0 z-50 bg-[#F6E8D9] py-4 transition-all duration-300 ${
         isScrolled ? "shadow-md" : ""
-      }`}
+      }` }
     >
       <div className="container mx-auto flex justify-between items-center px-4 md:px-6">
         {/* Logo */}
@@ -81,7 +81,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="/gallery" className="duration-300 hover:text-orange-500">
+            <Link to="/Products" className="duration-300 hover:text-orange-500">
               {content.products}
             </Link>
           </li>

@@ -15,19 +15,18 @@ export default function Products() {
     fetch("/products.json")
       .then((res) => res.json())
       .then((data) => {
-        const productsData = data[lang]?.products || [];
+        const productsData = (data[lang]?.products || []).slice(0, 3); // ✅ عرض 4 منتجات فقط
         setProducts(productsData);
-
+  
         setSelectedOptions(
           productsData.reduce((acc, product) => {
-            acc[product.id] = product.tags[0]; 
+            acc[product.id] = product.tags[0];
             return acc;
           }, {})
         );
       })
       .catch((error) => console.error("Error loading products:", error));
-
-    // ✅ تهيئة مكتبة AOS عند تحميل الصفحة
+  
     AOS.init({ duration: 800, delay: 100 });
   }, [lang]);
 
