@@ -48,63 +48,19 @@
     }
   },
   "about": {
+    "en": {
+      "title": "About us",
+      "subtitle": "We provide quality coffee,\nand ready to deliver.",
+      "description": "We are a company that makes and distributes delicious drinks. Our main product is made with a secret recipe and available in stores worldwide.",
+      "image": "/images/about_coffe.png",
+      "button": "Get your coffee"
+    },
     "ar": {
       "title": "من نحن",
       "subtitle": "نحن نقدم قهوة عالية الجودة،\nوجاهزون للتوصيل.",
-      "description": "نحن شركة تقوم بصناعة وتوزيع المشروبات اللذيذة. منتجنا الرئيسي مصنوع بوصفة سرية ومتوفّر في المتاجر حول العالم.",
-      "button": "احصل على قهوتك",
+      "description": "نحن شركة تقوم بصناعة وتوزيع المشروبات اللذيذة. منتجنا الرئيسي مصنوع بوصفة سرية ومتوفر في المتاجر حول العالم.",
       "image": "/images/about_coffe.png",
-      "values": [
-        {
-          "icon": "/images/icons/quality.svg",
-          "title": "جودة عالية",
-          "description": "نستخدم أجود حبوب القهوة."
-        },
-        {
-          "icon": "/images/icons/delivery.svg",
-          "title": "توصيل سريع",
-          "description": "قهوتك توصلك في وقت قياسي."
-        },
-        {
-          "icon": "/images/icons/team.svg",
-          "title": "فريق خبير",
-          "description": "فريقنا يعمل بشغف يومياً."
-        },
-        {
-          "icon": "/images/icons/sustainability.svg",
-          "title": "استدامة",
-          "description": "نحن نهتم بالبيئة وندعم الزراعة النظيفة."
-        }
-      ]
-    },
-    "en": {
-      "title": "About Us",
-      "subtitle": "We serve high-quality coffee,\nand we're ready to deliver.",
-      "description": "We are a company that crafts and distributes delicious beverages. Our main product is made with a secret recipe and is available in stores worldwide.",
-      "button": "Get Your Coffee",
-      "image": "/images/about_coffe.png",
-      "values": [
-        {
-          "icon": "/images/icons/quality.svg",
-          "title": "High Quality",
-          "description": "We use the finest coffee beans."
-        },
-        {
-          "icon": "/images/icons/delivery.svg",
-          "title": "Fast Delivery",
-          "description": "Your coffee arrives in record time."
-        },
-        {
-          "icon": "/images/icons/team.svg",
-          "title": "Expert Team",
-          "description": "Our team works passionately every day."
-        },
-        {
-          "icon": "/images/icons/sustainability.svg",
-          "title": "Sustainability",
-          "description": "We care for the environment and support clean farming."
-        }
-      ]
+      "button": "احصل على قهوتك"
     }
   },
   "partnersSection": {
