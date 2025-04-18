@@ -74,14 +74,14 @@ export default function About() {
 
       {/* القيم الأساسية */}
       <motion.div 
-        className="relative z-10 mt-16 flex align-center justify-center flex-1 gap-6 text-center"
+        className="relative z-10 mt-16 flex align-center justify-center flex-col sm:flex-row flex-1 gap-6 text-center"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.8 }}
         viewport={{ once: true }}
       >
         {content.values.map((value, index) => (
-          <div key={index} className="bg-white rounded-lg p-8 shadow hover:shadow-md hover:translate-y-1.5 hover:translate-x-4  transition-all ">
+          <div key={index} className="bg-white rounded-lg p-8 shadow hover:shadow-md hover:translate-y-1.5 hover:translate-x-4  transition-all duration-300 ease-in-out ">
             <img src={value.icon} alt={value.title} className="w-12 h-12 mx-auto mb-3 flex-1" />
             
             <h4 className="font-semibold text-lg text-[#432818]">{value.title}</h4>
