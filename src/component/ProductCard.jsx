@@ -1,7 +1,8 @@
 import { useContext, useState } from "react";
 import { LanguageContext } from "../context/LanguageContext";
 import { useCart } from "../context/CartContext";
-import { ShoppingCart } from "lucide-react"; // أيقونة السلة
+import { ShoppingCart } from "lucide-react";
+import toast, { Toaster } from "react-hot-toast"; // ⬅️ إضافة Toaster هنا
 
 export default function ProductCard({ product }) {
   const { lang } = useContext(LanguageContext);
@@ -10,10 +11,16 @@ export default function ProductCard({ product }) {
 
   const handleAdd = () => {
     if (!selectedTag) {
-      alert(lang === "en" ? "Please select a type" : "اختر النوع أولاً");
+      toast.error(lang === "en" ? "Please select a type" : "اختر النوع أولاً");
       return;
     }
+
     addFromCart(product.id, selectedTag);
+    toast.success(
+      lang === "en"
+        ? "Added to cart successfully 🛒"
+        : "تمت الإضافة إلى السلة بنجاح 🛒"
+    );
   };
 
   return (
@@ -21,6 +28,8 @@ export default function ProductCard({ product }) {
       dir={lang === "ar" ? "rtl" : "ltr"}
       className="bg-[#f7f3ef] rounded-2xl shadow-md p-3 relative border border-[#c8b6a6]"
     >
+      {/* ✅ مؤقتًا نضيف التوستر هنا للتأكد
+      <Toaster position="top-right" /> */}
 
       {/* تقييم */}
       <div className="absolute top-2 right-2 bg-white text-sm px-2 py-1 rounded-full flex items-center gap-1 shadow">
@@ -64,7 +73,7 @@ export default function ProductCard({ product }) {
         className="bg-orange-500 hover:bg-orange-600 transition text-white px-4 py-2 rounded-xl w-full flex items-center justify-center gap-2 font-medium"
       >
         <ShoppingCart size={18} />
-        {lang === "en" ? "Add to Cart" : "أضف إلى السلة"}
+        {/* {lang === "en" ? "Add to Cart" : "أضف إلى السلة"} */}
       </button>
     </div>
   );

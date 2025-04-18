@@ -4,6 +4,7 @@ import { LanguageContext } from "../context/LanguageContext";
 import { useCart } from "../context/CartContext";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import toast from "react-hot-toast"; // استيراد التوست
 
 export default function Products() {
   const { lang } = useContext(LanguageContext);
@@ -15,7 +16,7 @@ export default function Products() {
     fetch("/products.json")
       .then((res) => res.json())
       .then((data) => {
-        const productsData = (data[lang]?.products || []).slice(0, 3); // ✅ عرض 4 منتجات فقط
+        const productsData = (data[lang]?.products || []).slice(0, 3); // عرض 3 منتجات فقط
         setProducts(productsData);
   
         setSelectedOptions(
@@ -38,7 +39,6 @@ export default function Products() {
           <span className="text-orange-500">{lang === "en" ? "Now" : "رواجًا"}</span>
         </h2>
 
-  
         <div className="bg-yellow-800 h-full rounded-3xl px-7 py-4" data-aos="fade-left">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {products.map((product, index) => (
@@ -46,14 +46,12 @@ export default function Products() {
                 key={product.id}
                 className="bg-[#F8EDE3] rounded-2xl shadow-lg p-4 relative border border-gray-200"
                 data-aos="zoom-in"
-                data-aos-delay={index * 100} // ✅ تأخير ظهور العناصر تدريجيًا
+                data-aos-delay={index * 100}
               >
                 <img src={product.image} alt={product.name} className="rounded-lg w-full object-cover" />
                 <div className="absolute top-2 right-2 flex items-center bg-white text-black px-2 py-1 rounded-full text-xs">
                   <FaStar className="text-yellow-400 mr-1" /> {product.rating}
                 </div>
-
-          
 
                 <div className="flex justify-between items-center mt-2">
                   <h3 className="mt-3 text-lg font-semibold">{product.name}</h3>
@@ -77,7 +75,15 @@ export default function Products() {
                   </div>
                   
                   <button
-                    onClick={() => addToCart({ ...product, selectedTag: selectedOptions[product.id] })}
+                    onClick={() => {
+                      addToCart({ ...product, selectedTag: selectedOptions[product.id] });
+
+                      toast.success(
+                        lang === "en"
+                          ? "Added to cart successfully 🛒"
+                          : "تمت الإضافة إلى السلة بنجاح 🛒"
+                      );
+                    }}
                     className="bg-orange-500 text-white p-2 rounded-full hover:bg-orange-600 transition-all"
                   >
                     <FaShoppingCart />

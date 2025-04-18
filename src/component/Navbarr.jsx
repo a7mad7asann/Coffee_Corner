@@ -85,11 +85,11 @@ export default function Navbar() {
               {content.products}
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/partners" className="duration-300 hover:text-orange-500">
               {content.delivery}
             </Link>
-          </li>
+          </li> */}
         </ul>
 
         {/* Mobile Menu Button */}

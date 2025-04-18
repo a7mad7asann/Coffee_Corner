@@ -56,7 +56,7 @@ export default function Cart() {
 
       {cart.length > 0 ? (
         <div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {cart.map((cartItem, index) => {
               const product = products.find((p) => p.id === cartItem.id);
               if (!product) return null;
