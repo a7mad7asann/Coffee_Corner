@@ -63,8 +63,15 @@ export default function Navbar() {
     >
       <div className="container mx-auto flex justify-between items-center px-4 md:px-6">
         {/* Logo */}
-        <Link to="/">
-          <img src={content.logo} alt="Logo" className="w-28 md:w-32 h-auto" />
+        {/* <Link to="/">
+          <img src= alt="Logo" className="w-28 md:w-32 h-auto" />
+        </Link> */}
+        
+        <Link
+          to="/"
+          className="text-2xl font-bold tracking-wide text-gray-800 transition-colors duration-300 hover:text-orange-500"
+        >
+          {content.logo}
         </Link>
 
         {/* Desktop Links */}

@@ -5,7 +5,7 @@
       "delivery": "التوصيل",
       "products": "المنتجات",
       "about": "من نحن",
-      "logo": "/images/logos/nav_logo.png",
+      "logo": "  ركن القهوة",
       "searchPlaceholder": "ابحث هنا...",
       "language": "English"
     },
@@ -14,7 +14,7 @@
       "delivery": "Delivery",
       "products": "Products ",
       "about": "About Us",
-      "logo": "/images/logos/nav_logo.png",
+      "logo": "Coffee Croner",
       "searchPlaceholder": "Search...",
       "language": "العربية"
     }
@@ -22,7 +22,8 @@
   "heroSection": {
     "en": {
       "backgroundImage": "/images/bg_img_hero.svg",
-      "title": "Enjoy your coffee",
+      "title": "Enjoy your",
+      "span": "Coffee",
       "description": "Boost your productivity and build your mood with a glass of coffee in the morning",
       "buttonText": "Order now",
       "moreMenu": "More menu",
@@ -35,7 +36,8 @@
     },
     "ar": {
       "backgroundImage": "/images/bg_img_hero.svg",
-      "title": "استمتع بالقهوة",
+      "title": "استمتع ",
+      "span": "بالقهوة",
       "description": "عزز إنتاجيتك وحسن مزاجك مع كوب من القهوة في الصباح",
       "buttonText": "اطلب الآن",
       "moreMenu": "المزيد من القائمة",

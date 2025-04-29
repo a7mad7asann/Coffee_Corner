@@ -35,7 +35,8 @@ export default function HeroSection() {
           className={`md:w-1/2 text-center md:text-left ${lang === "ar" ? "md:text-right" : "md:text-left"}`}
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#432818]">
-            {content.title.split(" ")[0]} <span className="text-[#FF902B]">{content.title.split(" ")[1]}</span>
+            {content.title} 
+                <span className="text-[#FF902B]">{content.span}</span>
           </h1>
           <p className="text-gray-700 mt-4 text-lg">{content.description}</p>
           <div className="mt-6 gap-4 sm:mb-3 mb-0">
