@@ -20,7 +20,7 @@ export default function HeroSection() {
   if (!content) return <p>Loading...</p>;
 
   return (
-    <section className="relative h-[600px] bg-[#F8EDE3] flex items-center justify-center overflow-hidden">
+    <section className="relative h-[600px] bg-[#F6E8D9] flex items-center justify-center overflow-hidden">
       {/* Floating Coffee Beans */}
       <div className="absolute right-0 top-0 pointer-events-none">
         <img src={content.backgroundImage} alt="Coffee Beans" className="w-full h-full object-cover opacity-60" />

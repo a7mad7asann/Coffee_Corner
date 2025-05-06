@@ -13,9 +13,9 @@ export default function About() {
   }, [lang]);
 
   return (
-    <section className="bg-[#fef6ef] relative overflow-hidden py-4 px-6 md:px-24">
+    <section className="bg-[#F6E8D9] relative overflow-hidden py-4 px-6 md:px-24">
       {/* خلفية كؤوس القهوة */}
-      <div className="absolute inset-0 opacity-10 z-0 bg-[url('/images/about_pattern.png')] bg-repeat" />
+      <div className="absolute inset-0 opacity-10 z-1 bg-[url('/images/about_pattern.png')] bg-repeat" />
 
       <div className="relative z-10 flex flex-col-reverse md:flex-row items-center gap-12 mt-16">
         {/* النص */}

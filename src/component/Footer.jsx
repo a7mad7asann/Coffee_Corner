@@ -22,7 +22,7 @@ export default function Footer() {
   return (
     <footer
       dir={lang === 'ar' ? 'rtl' : 'ltr'}
-      className="bg-[#f7f3ef] text-gray-800 pt-12 pb-8 px-6"
+      className="bg-[#F6E8D9] text-gray-800 pt-12 pb-8 px-6"
     >
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* الشركة */}
