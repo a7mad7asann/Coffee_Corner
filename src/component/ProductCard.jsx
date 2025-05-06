@@ -26,7 +26,7 @@ export default function ProductCard({ product }) {
   return (
     <div
       dir={lang === "ar" ? "rtl" : "ltr"}
-      className="bg-[#f7f3ef] rounded-2xl shadow-md p-3 relative border border-[#c8b6a6]"
+      className="bg-[#f7f3ef] rounded-2xl w-[285px] shadow-md p-3 relative border border-[#c8b6a6]"
     >
       {/* ✅ مؤقتًا نضيف التوستر هنا للتأكد
       <Toaster position="top-right" /> */}
