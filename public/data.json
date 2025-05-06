@@ -138,6 +138,75 @@
       }
     ]
   },
+  "testimonialsSection": {
+    "en": {
+      "title": "What they say about us",
+      "subtitle": "We always provide the best service and always maintain the quality of coffee",
+      "testimonials": [
+        {
+          "name": "Naura",
+          "text": "I really love the cappuccino, the coffee was very ",
+          "image": "/images/test_img.png"
+        },
+        {
+          "name": "John",
+          "text": "This coffee shop is very convenient",
+          "image": "/images/test_img.png"
+        },
+        {
+          "name": "Azura",
+          "text": "The coffee menu here is very much",
+          "image": "/images/test_img.png"
+        }, 
+        {
+          "name": "Azura",
+          "text": "The coffee menu here is very much",
+          "image": "/images/test_img.png"
+        }, 
+        {
+          "name": "Azura",
+          "text": "The coffee menu here is very much",
+          "image": "/images/test_img.png"
+        }
+      ]
+    },
+    "ar": {
+      "title": "ماذا يقولون عنا",
+      "subtitle": "نحن دائمًا نقدم أفضل خدمة ونحافظ على جودة القهوة",
+      "testimonials": [
+        {
+          "name": "نورة",
+          "text": "أحببت الكابتشينو كثيرًا، كانت القهوة ناعمة جدًا",
+          "image": "/images/test_img.png"
+        },
+        {
+          "name": "جون",
+          "text": "هذا المقهى مريح جدًا وسهل الوصول",
+          "image": "/images/test_img.png"
+        },
+        {
+          "name": "أزورا",
+          "text": "قائمة القهوة هنا متنوعة جدًا",
+          "image": "/images/test_img.png"
+        },
+        {
+          "name": "أزورا",
+          "text": "قائمة القهوة هنا متنوعة جدًا",
+          "image": "/images/test_img.png"
+        },
+        {
+          "name": "أزورا",
+          "text": "قائمة القهوة هنا متنوعة جدًا",
+          "image": "/images/test_img.png"
+        },
+        {
+          "name": "أزورا",
+          "text": "قائمة القهوة هنا متنوعة جدًا",
+          "image": "/images/test_img.png"
+        }
+      ]
+    }
+  },
   "footer": {
     "ar": {
       "company": "  ركن القهوة ",

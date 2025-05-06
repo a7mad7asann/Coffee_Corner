@@ -16,7 +16,7 @@ export default function Products() {
   }, [lang]);
 
   return (
-    <div className="p-6 min-h-screen bg-[#fffaf5]"  dir={lang === "ar" ? "rtl" : "ltr"}>
+    <div className="p-6 min-h-screen bg-[#F6E8D9]"  dir={lang === "ar" ? "rtl" : "ltr"}>
       <h2 className="text-2xl font-bold mb-6">
         {lang === "en" ? "Our Coffee Products" : "منتجات القهوة"}
       </h2>
