@@ -89,7 +89,7 @@ export default function Testimonials() {
             opacity: 0.5;
             }
             .swiper-pagination {
-            transform: translate3d(0, 15px, 0);
+            transform: translate3d(0, 8px, 0);
             }
             .swiper-pagination-bullet-active {
             background: #5c3b30;

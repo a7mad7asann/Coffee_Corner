@@ -7,7 +7,8 @@ import SpecialMenu from "../sections/SpecialMenu";
 // import Form from "../sections/Form";
 // import ToastTest from "../component/ToastTest";
 import Testimonials from "../sections/Testimonials";
-
+import PromoBanners from "../sections/PromoBanners";
+import Banner from "../sections/Banner";
 export default function Home() {
   return (
     <>
@@ -15,6 +16,8 @@ export default function Home() {
 
         <Hero />
         <PopProduct />
+        <Banner />
+        <PromoBanners />
         <About />
         <SpecialMenu />
         <Testimonials />
