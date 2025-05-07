@@ -16,10 +16,10 @@ export default function Home() {
 
         <Hero />
         <PopProduct />
-        <Banner />
         <PromoBanners />
         <About />
         <SpecialMenu />
+        <Banner />
         <Testimonials />
         {/* <Mques /> */}
         {/* <Gallery /> */}

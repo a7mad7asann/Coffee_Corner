@@ -31,7 +31,7 @@ export default function Products() {
         </h2>
 
         <div className="bg-yellow-800 rounded-3xl px-4 md:px-7 py-6" data-aos="fade-left">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-6">
             {products.map((product, index) => (
               <div key={product.id} data-aos="zoom-in" data-aos-delay={index * 100}>
                 <ProductCard product={product} />
