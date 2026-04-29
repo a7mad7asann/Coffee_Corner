@@ -1,13 +1,12 @@
-import { useState, useEffect, useContext } from "react";
-import { FaShoppingCart, FaStar } from "react-icons/fa";
-import { LanguageContext } from "../context/LanguageContext";
-import { useCart } from "../context/CartContext";
+import { useContext, useEffect, useState } from "react";
+import { ShoppingCart, Star } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import toast from "react-hot-toast"; // استيراد التوست
+import toast from "react-hot-toast";
+import { LanguageContext } from "../context/LanguageContext";
+import { useCart } from "../context/CartContext";
 
-
-export default function Products() {
+export default function SpecialMenu() {
   const { lang } = useContext(LanguageContext);
   const { addToCart } = useCart();
   const [products, setProducts] = useState([]);
@@ -17,9 +16,8 @@ export default function Products() {
     fetch("/products.json")
       .then((res) => res.json())
       .then((data) => {
-        const productsData = (data[lang]?.products || []).slice(0, 6); // ✅ عرض 4 منتجات فقط
+        const productsData = (data[lang]?.products || []).slice(0, 6);
         setProducts(productsData);
-  
         setSelectedOptions(
           productsData.reduce((acc, product) => {
             acc[product.id] = product.tags[0];
@@ -28,74 +26,82 @@ export default function Products() {
         );
       })
       .catch((error) => console.error("Error loading products:", error));
-  
+
     AOS.init({ duration: 800, delay: 100 });
   }, [lang]);
 
   return (
-    <section className="p-6">
-      <div className="container mx-auto">
-        <h2 className="text-2xl font-bold mb-4" data-aos="fade-right">
-          {lang === "en" ? "special menu " : "قائمة خاصة"}{" "}
-          <span className="text-orange-500">{lang === "en" ? "for you" : "لك"}</span>
-        </h2>
-
-  
-        <div className="h-full rounded-3xl px-7 py-4" data-aos="fade-left">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {products.map((product, index) => (
-              <div
-                key={product.id}
-                className="bg-white rounded-2xl shadow-lg p-4 relative border border-gray-200"
-                data-aos="zoom-in"
-                data-aos-delay={index * 100} // ✅ تأخير ظهور العناصر تدريجيًا
-              >
-                <img src={product.image} alt={product.name} className="rounded-lg w-full object-cover" />
-                <div className="absolute top-2 right-2 flex items-center bg-white text-black px-2 py-1 rounded-full text-xs">
-                  <FaStar className="text-yellow-400 mr-1" /> {product.rating}
-                </div>
-
-          
-
-                <div className="flex justify-between items-center mt-2">
-                  <h3 className="mt-3 text-lg font-semibold">{product.name}</h3>
-
-                  <span className="text-xl font-bold text-gray-900">{product.price}  { (lang === "en" ? " $ " : " ريال ") }</span>
-                </div>
-
-                <div className="flex justify-between items-center mt-2">
-                  <div className="flex gap-2">
-                    {product.tags.map((tag) => (
-                      <button
-                        key={tag}
-                        onClick={() => setSelectedOptions((prev) => ({ ...prev, [product.id]: tag }))}
-                        className={`px-2 py-1 text-xs rounded-full ${
-                          selectedOptions[product.id] === tag ? "bg-orange-500 text-white" : "bg-gray-200 text-gray-700"
-                        }`}
-                      >
-                        {tag}
-                      </button>
-                    ))}
-                  </div>
-                  
-                  <button
-                    onClick={() => {
-                      addToCart({ ...product, selectedTag: selectedOptions[product.id] });
-
-                      toast.success(
-                        lang === "en"
-                          ? "Added to cart successfully 🛒"
-                          : "تمت الإضافة إلى السلة بنجاح 🛒"
-                      );
-                    }}
-                    className="bg-orange-500 text-white p-2 rounded-full hover:bg-orange-600 transition-all"
-                  >
-                    <FaShoppingCart />
-                  </button>
-                </div>
-              </div>
-            ))}
+    <section className="bg-[#fff8ef] py-16" dir={lang === "ar" ? "rtl" : "ltr"}>
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-wide text-orange-500">
+              {lang === "en" ? "Special Menu" : "قائمة خاصة"}
+            </p>
+            <h2 className="mt-2 text-3xl font-black text-[#2f2118] md:text-4xl" data-aos="fade-right">
+              {lang === "en" ? "Picked for you" : "مختارة لك"}
+            </h2>
           </div>
+          <p className="max-w-md text-sm leading-6 text-[#6f5a4e]">
+            {lang === "en"
+              ? "A compact selection of customer favorites with quick choices for hot and cold drinks."
+              : "اختيارات مفضلة وسريعة من المنتجات الأكثر طلبا مع تحديد النوع بسهولة."}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {products.map((product, index) => (
+            <article
+              key={product.id}
+              className="grid grid-cols-[118px_1fr] gap-4 rounded-lg border border-[#ead8ca] bg-white p-3 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              data-aos="zoom-in"
+              data-aos-delay={index * 80}
+            >
+              <div className="relative flex h-full min-h-[150px] items-center justify-center rounded-lg bg-[#fff1e5]">
+                <img src={product.image} alt={product.name} className="h-28 w-full object-contain" />
+                <span className="absolute start-2 top-2 flex items-center gap-1 rounded-lg bg-white px-2 py-1 text-xs font-bold text-[#2f2118] shadow">
+                  <Star size={12} className="fill-orange-400 text-orange-400" />
+                  {product.rating}
+                </span>
+              </div>
+
+              <div className="flex min-w-0 flex-col">
+                <div className="flex items-start justify-between gap-3">
+                  <h3 className="text-lg font-black leading-tight text-[#2f2118]">{product.name}</h3>
+                  <span className="whitespace-nowrap font-black text-orange-500">
+                    {product.price} {lang === "en" ? "$" : "ريال"}
+                  </span>
+                </div>
+
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {product.tags.map((tag) => (
+                    <button
+                      key={tag}
+                      onClick={() => setSelectedOptions((prev) => ({ ...prev, [product.id]: tag }))}
+                      className={`rounded-lg border px-3 py-1 text-xs font-bold transition ${
+                        selectedOptions[product.id] === tag
+                          ? "border-orange-500 bg-orange-500 text-white"
+                          : "border-[#ead8ca] bg-white text-[#6f5a4e] hover:border-orange-300"
+                      }`}
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => {
+                    addToCart({ ...product, selectedTag: selectedOptions[product.id] });
+                    toast.success(lang === "en" ? "Added to cart successfully" : "تمت الإضافة للسلة");
+                  }}
+                  className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#2f2118] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-orange-500"
+                >
+                  <ShoppingCart size={16} />
+                  {lang === "en" ? "Add" : "أضف"}
+                </button>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

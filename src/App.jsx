@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import BuildingLoader from "./component/BuildingLoader.jsx";
+import CoffeeLoader from "./component/CoffeeLoader.jsx"; // غيّر من BuildingLoader
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import { LanguageProvider } from "./context/LanguageContext";
 import Nav from "./component/Navbarr";
 import Home from "./pages/Home.jsx";
@@ -14,25 +16,35 @@ import Footer from "./component/Footer";
 import { Toaster } from 'react-hot-toast'; // ⬅️ استيراد التوستر
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setLoading(false), 1200);
+    return () => window.clearTimeout(timer);
+  }, []);
+
   return (
     <LanguageProvider>
       <Router>
-        <Nav />
+        <CoffeeLoader loading={loading} />
+        {!loading && <Nav />}
         
         {/* ✅ مكون التوست لإظهار الرسائل في كل الصفحات */}
         <Toaster position="top-center" />
 
-        <Routes>
-          <Route path="/"         element={<Home     />} />
-          <Route path="/cart"     element={<Cart     />} />
-          <Route path="/about"    element={<About    />} />
-          <Route path="/cta"      element={<Mques    />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/form"     element={<Form     />} />
-          <Route path="/partners" element={<Prtner   />} />
-        </Routes>
+        {!loading && (
+          <Routes>
+            <Route path="/"         element={<Home     />} />
+            <Route path="/cart"     element={<Cart     />} />
+            <Route path="/about"    element={<About    />} />
+            <Route path="/cta"      element={<Mques    />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/form"     element={<Form     />} />
+            <Route path="/partners" element={<Prtner   />} />
+          </Routes>
+        )}
 
-        <Footer />
+        {!loading && <Footer />}
       </Router>
     </LanguageProvider>
   );

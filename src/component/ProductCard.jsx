@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import { useContext, useState } from "react";
+import { ShoppingCart } from "lucide-react";
+import toast from "react-hot-toast";
 import { LanguageContext } from "../context/LanguageContext";
 import { useCart } from "../context/CartContext";
-import { ShoppingCart } from "lucide-react";
-import toast, { Toaster } from "react-hot-toast"; // ⬅️ إضافة Toaster هنا
 
 export default function ProductCard({ product }) {
   const { lang } = useContext(LanguageContext);
@@ -11,55 +12,53 @@ export default function ProductCard({ product }) {
 
   const handleAdd = () => {
     if (!selectedTag) {
-      toast.error(lang === "en" ? "Please select a type" : "اختر النوع أولاً");
+      toast.error(lang === "en" ? "Please select a type" : "اختر النوع أولا");
       return;
     }
 
     addFromCart(product.id, selectedTag);
-    toast.success(
-      lang === "en"
-        ? "Added to cart successfully 🛒"
-        : "تمت الإضافة إلى السلة بنجاح 🛒"
-    );
+    toast.success(lang === "en" ? "Added to cart successfully" : "تمت الإضافة للسلة");
   };
 
   return (
     <div
       dir={lang === "ar" ? "rtl" : "ltr"}
-      className="bg-[#f7f3ef] rounded-2xl w-[285px] shadow-md p-3 relative border border-[#c8b6a6]"
+      className="group relative flex h-full min-h-[390px] flex-col overflow-hidden rounded-lg border border-[#eadfd6] bg-white p-3 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
     >
-      {/* ✅ مؤقتًا نضيف التوستر هنا للتأكد
-      <Toaster position="top-right" /> */}
-
-      {/* تقييم */}
-      <div className="absolute top-2 right-2 bg-white text-sm px-2 py-1 rounded-full flex items-center gap-1 shadow">
-        <span>4.8</span>
-        <span className="text-yellow-400">⭐</span>
+      <div className="absolute right-5 top-5 z-10 flex items-center gap-1 rounded-lg bg-white/95 px-2 py-1 text-sm font-semibold shadow">
+        <span>{product.rating || "4.8"}</span>
+        <span className="text-yellow-400">★</span>
       </div>
 
-      {/* الصورة */}
-      <img
-        src={product.image}
-        alt={product.name}
-        className="rounded-xl w-full h-40 object-cover mb-4"
-      />
-
-      {/* الاسم والسعر */}
-      <div className="flex justify-between items-center font-bold text-[16px] text-gray-800 mb-2">
-        <span>{product.name}</span>
-        <span>{product.price} {lang === "en" ? "$" : "ريال"}</span>
+      <div className="mb-4 flex h-48 items-center justify-center rounded-lg bg-[#fff7ef]">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="h-40 w-full object-contain transition duration-300 group-hover:scale-105"
+        />
       </div>
 
-      {/* التاجات */}
-      <div className="flex flex-wrap gap-2 mb-3">
-        {product.tags.map((tag, index) => (
+      <div className="mb-3 flex items-start justify-between gap-3 text-gray-900">
+        <div>
+          <p className="text-sm font-medium text-orange-500">
+            {lang === "en" ? "Coffee" : "قهوة"}
+          </p>
+          <h3 className="mt-1 text-lg font-bold leading-tight">{product.name}</h3>
+        </div>
+        <span className="whitespace-nowrap text-lg font-extrabold text-[#2f2118]">
+          {product.price} {lang === "en" ? "$" : "ريال"}
+        </span>
+      </div>
+
+      <div className="mb-4 flex flex-wrap gap-2">
+        {product.tags.map((tag) => (
           <button
-            key={index}
+            key={tag}
             onClick={() => setSelectedTag(tag)}
-            className={`px-3 py-1 rounded-full text-sm font-medium border ${
+            className={`rounded-lg border px-3 py-1 text-sm font-semibold transition ${
               selectedTag === tag
-                ? "bg-orange-500 text-white"
-                : "bg-[#e9e9e9] text-gray-700"
+                ? "border-orange-500 bg-orange-500 text-white"
+                : "border-[#eadfd6] bg-white text-gray-700 hover:border-orange-300"
             }`}
           >
             {tag}
@@ -67,13 +66,12 @@ export default function ProductCard({ product }) {
         ))}
       </div>
 
-      {/* زر الإضافة */}
       <button
         onClick={handleAdd}
-        className="bg-orange-500 hover:bg-orange-600 transition text-white px-4 py-2 rounded-xl w-full flex items-center justify-center gap-2 font-medium"
+        className="mt-auto flex w-full items-center justify-center gap-2 rounded-lg bg-[#2f2118] px-4 py-3 font-semibold text-white transition hover:bg-orange-500"
       >
         <ShoppingCart size={18} />
-        {/* {lang === "en" ? "Add to Cart" : "أضف إلى السلة"} */}
+        {lang === "en" ? "Add to Cart" : "أضف للسلة"}
       </button>
     </div>
   );

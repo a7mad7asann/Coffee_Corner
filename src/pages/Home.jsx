@@ -9,14 +9,16 @@ import SpecialMenu from "../sections/SpecialMenu";
 import Testimonials from "../sections/Testimonials";
 import PromoBanners from "../sections/PromoBanners";
 import Banner from "../sections/Banner";
+import Categories from "../sections/Categories";
 export default function Home() {
   return (
     <>
-      <div className="overflow-hidden ">
-
+      <div className="overflow-hidden bg-[#fff8ef]">
         <Hero />
+        <Categories />
         <PopProduct />
         <Banner />
+        <PopProduct />
         <PromoBanners />
         <About />
         <SpecialMenu />
