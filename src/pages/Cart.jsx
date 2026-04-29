@@ -1,13 +1,13 @@
 import { useCart } from "../context/CartContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { LanguageContext } from "../context/LanguageContext";
-import { useNavigate } from "react-router-dom"; // ✅ استبدال useRouter() بـ useNavigate()
 
 export default function Cart() {
   const { cart, addFromCart, removeFromCart, clearCart } = useCart();
   const { lang } = useContext(LanguageContext);
   const [products, setProducts] = useState([]);
-  const navigate = useNavigate(); // ✅ استبدال useRouter() بـ useNavigate()
 
   useEffect(() => {
     fetch("/products.json")
@@ -16,117 +16,189 @@ export default function Cart() {
       .catch((error) => console.error("Error loading products:", error));
 
     document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
-  }, [lang, cart]);
+  }, [lang]);
 
-  // ✅ حساب إجمالي السعر
-  const totalPrice = cart.reduce((acc, cartItem) => {
-    const product = products.find((p) => p.id === cartItem.id);
-    return product ? acc + product.price * cartItem.quantity : acc;
-  }, 0);
+  const cartItems = useMemo(
+    () =>
+      cart
+        .map((cartItem) => {
+          const product = products.find((p) => p.id === cartItem.id);
+          if (!product) return null;
+          const price = Number(product.price) || 0;
+          return {
+            ...cartItem,
+            product,
+            price,
+            lineTotal: price * cartItem.quantity,
+          };
+        })
+        .filter(Boolean),
+    [cart, products]
+  );
 
-  // ✅ دالة إرسال الطلب عبر واتساب
+  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  const subtotal = cartItems.reduce((acc, item) => acc + item.lineTotal, 0);
+  const delivery = subtotal > 0 ? 5 : 0;
+  const totalPrice = subtotal + delivery;
+  const currency = lang === "en" ? "$" : "ريال";
+
   const handleCheckout = () => {
-    if (cart.length === 0) return; // تجنب إرسال طلب فارغ
+    if (cartItems.length === 0) return;
 
-    let message = lang === "en" ? "🛒 Order Details:\n" : "🛒 تفاصيل الطلب:\n";
-    
-    cart.forEach((item, index) => {
-      const product = products.find((p) => p.id === item.id);
-      if (!product) return;
-      
-      message += `${index + 1}- ${product.name} (${item.selectedTag}) - ${item.quantity}x\n`;
+    let message = lang === "en" ? "Order Details:\n" : "تفاصيل الطلب:\n";
+
+    cartItems.forEach((item, index) => {
+      message += `${index + 1}- ${item.product.name} (${item.selectedTag}) - ${item.quantity}x - ${item.lineTotal.toFixed(2)} ${currency}\n`;
     });
 
-    message += lang === "en" ? `\nTotal Price: $${totalPrice.toFixed(2)}` : `\nإجمالي السعر: ${totalPrice.toFixed(2)} ريال`;
-    message += lang === "en" ? `\nTotal items: ${cart.length}` : `\nإجمالي المنتجات: ${cart.length}`;
+    message += lang === "en"
+      ? `\nSubtotal: ${subtotal.toFixed(2)} ${currency}\nDelivery: ${delivery.toFixed(2)} ${currency}\nTotal: ${totalPrice.toFixed(2)} ${currency}`
+      : `\nالمجموع: ${subtotal.toFixed(2)} ${currency}\nالتوصيل: ${delivery.toFixed(2)} ${currency}\nالإجمالي: ${totalPrice.toFixed(2)} ${currency}`;
 
-    // ✅ رقم الهاتف الذي سيتم إرسال الطلب إليه (غيّره برقمك)
-    const phoneNumber = "201061380485"; // أدخل رقم واتساب بدون "+"
+    const phoneNumber = "201061380485";
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-    // فتح واتساب
     window.open(whatsappURL, "_blank");
   };
 
   return (
-    <div className="p-6" dir={lang === "ar" ? "rtl" : "ltr"}>
-      <h2 className="text-2xl font-bold mb-4">
-        🛒 {cart.length > 0 ? (lang === "en" ? "Your Cart" : "سلة المشتريات") : (lang === "en" ? "Cart is Empty" : "السلة فارغة")}
-      </h2>
+    <main className="min-h-screen bg-white pt-24" dir={lang === "ar" ? "rtl" : "ltr"}>
+      <section className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-lg bg-[#2f2118] px-6 py-10 text-white md:px-10">
+          <div className="absolute inset-y-0 end-0 hidden w-1/2 bg-[url('/images/banner.png')] bg-contain bg-right bg-no-repeat opacity-35 md:block" />
+          <div className="relative max-w-2xl">
+            <span className="inline-flex items-center gap-2 rounded-lg bg-white/15 px-3 py-1 text-sm font-bold text-orange-100">
+              <ShoppingBag size={16} />
+              {lang === "en" ? "Checkout" : "إتمام الطلب"}
+            </span>
+            <h1 className="mt-4 text-4xl font-extrabold md:text-5xl">
+              {cartItems.length > 0
+                ? lang === "en" ? "Your cart is ready" : "سلتك جاهزة"
+                : lang === "en" ? "Your cart is empty" : "السلة فارغة"}
+            </h1>
+            <p className="mt-4 max-w-xl text-white/75">
+              {lang === "en"
+                ? "Review products, quantities, and payment details before sending your order."
+                : "راجع المنتجات والكميات وتفاصيل الدفع قبل إرسال الطلب."}
+            </p>
+          </div>
+        </div>
+      </section>
 
-      {cart.length > 0 ? (
-        <div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {cart.map((cartItem, index) => {
-              const product = products.find((p) => p.id === cartItem.id);
-              if (!product) return null;
+      <section className="mx-auto grid w-full max-w-7xl gap-6 px-4 pb-14 sm:px-6 lg:grid-cols-[1fr_380px] lg:px-8">
+        <div className="space-y-4">
+          {cartItems.length > 0 ? (
+            cartItems.map((item) => (
+              <article
+                key={`${item.id}-${item.selectedTag}`}
+                className="grid gap-4 rounded-lg border border-[#eadfd6] bg-white p-4 shadow-sm md:grid-cols-[140px_1fr_auto]"
+              >
+                <div className="flex h-36 items-center justify-center rounded-lg bg-[#fff7ef]">
+                  <img src={item.product.image} alt={item.product.name} className="h-28 w-full object-contain" />
+                </div>
 
-              return (
-                <div key={index} className="bg-white rounded-2xl shadow-lg p-4 border border-gray-200">
-                  <img src={product.image} alt={product.name} className="rounded-lg w-full h-40 object-cover" />
-                  <h3 className="mt-3 text-lg font-semibold">{product.name}</h3>
+                <div className="flex flex-col justify-center">
+                  <p className="text-sm font-semibold text-orange-500">{item.selectedTag}</p>
+                  <h2 className="mt-1 text-xl font-bold text-[#2f2118]">{item.product.name}</h2>
+                  <p className="mt-2 text-sm text-gray-500">
+                    {lang === "en" ? "Unit price" : "سعر الوحدة"}: {item.price.toFixed(2)} {currency}
+                  </p>
 
-                  <div className="flex justify-between items-center mt-2"> 
-                    <p className="font-medium text-orange-500">{cartItem.selectedTag}</p>
-                    <span className="text-l font-medium text-gray-500">{product.price}  { (lang === "en" ? " $ " : " ريال ") } </span>
-                  </div>
-
-                  <div className="flex justify-evenly items-center mt-3">
-                    <span className="text-sm text-gray-600">
-                      {lang === "en" ? "Quantity" : "الكمية"}: {cartItem.quantity}
+                  <div className="mt-4 flex flex-wrap items-center gap-2">
+                    <button
+                      onClick={() => removeFromCart(item.id, item.selectedTag)}
+                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#eadfd6] text-[#2f2118] transition hover:border-orange-400 hover:text-orange-500"
+                      aria-label={lang === "en" ? "Decrease quantity" : "تقليل الكمية"}
+                    >
+                      <Minus size={16} />
+                    </button>
+                    <span className="flex h-9 min-w-12 items-center justify-center rounded-lg bg-[#fff7ef] px-3 font-bold text-[#2f2118]">
+                      {item.quantity}
                     </span>
-
                     <button
-                      onClick={() => addFromCart(cartItem.id, cartItem.selectedTag, false)}
-                      className="bg-yellow-900 text-white px-2 py-1 rounded-md"
+                      onClick={() => addFromCart(item.id, item.selectedTag)}
+                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#eadfd6] text-[#2f2118] transition hover:border-orange-400 hover:text-orange-500"
+                      aria-label={lang === "en" ? "Increase quantity" : "زيادة الكمية"}
                     >
-                      {lang === "en" ? "Add One" : "إضافة واحدة"}
+                      <Plus size={16} />
                     </button>
-
                     <button
-                      onClick={() => removeFromCart(cartItem.id, cartItem.selectedTag)}
-                      className="bg-yellow-500 text-white px-2 py-1 rounded-md"
+                      onClick={() => removeFromCart(item.id, item.selectedTag, true)}
+                      className="ms-2 flex h-9 w-9 items-center justify-center rounded-lg border border-red-100 text-red-500 transition hover:bg-red-50"
+                      aria-label={lang === "en" ? "Remove product" : "حذف المنتج"}
                     >
-                      {lang === "en" ? "Remove One" : "إزالة واحدة"}
-                    </button>
-
-                    <button
-                      onClick={() => removeFromCart(cartItem.id, cartItem.selectedTag, true)}
-                      className="bg-red-500 text-white px-2 py-1 rounded-md"
-                    >
-                      {lang === "en" ? "Remove All" : "إزالة الكل"}
+                      <Trash2 size={16} />
                     </button>
                   </div>
                 </div>
-              );
-            })}
-          </div>
 
-          {/* ✅ عرض إجمالي السعر */}
-          <div className="mt-6 text-lg font-semibold">
-            {lang === "en" ? `Total Price: $${totalPrice.toFixed(2)}` : `إجمالي السعر: ${totalPrice.toFixed(2)} ريال`}
-          </div>
-          <div className="flex justify-start gap-2 items-center ">
-          {/* ✅ زر العودة للصفحة الرئيسية */}
-            <button
-              onClick={() => navigate("/")}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"
-            >
-              {lang === "en" ? "Back to Home" : "العودة للصفحة الرئيسية"}
-            </button>
-
-            {/* ✅ زر إكمال الدفع عبر واتساب */}
-            <button
-              onClick={handleCheckout}
-              className="bg-green-500 text-white px-4 py-2 rounded-md mt-4 "
-            >
-              {lang === "en" ? "Complete Purchase via WhatsApp" : "إكمال الشراء عبر واتساب"}
-            </button>
-          </div>
+                <div className="flex items-center justify-between border-t border-[#eadfd6] pt-4 md:block md:border-0 md:pt-0 md:text-end">
+                  <p className="text-sm font-semibold text-gray-500">{lang === "en" ? "Total" : "الإجمالي"}</p>
+                  <p className="mt-1 text-2xl font-extrabold text-[#2f2118]">
+                    {item.lineTotal.toFixed(2)} {currency}
+                  </p>
+                </div>
+              </article>
+            ))
+          ) : (
+            <div className="rounded-lg border border-dashed border-[#eadfd6] bg-[#fff7ef] p-8 text-center">
+              <p className="text-lg font-semibold text-[#2f2118]">
+                {lang === "en" ? "No items in the cart." : "لا توجد منتجات في السلة."}
+              </p>
+              <Link
+                to="/products"
+                className="mt-5 inline-flex rounded-lg bg-orange-500 px-5 py-3 font-semibold text-white transition hover:bg-orange-600"
+              >
+                {lang === "en" ? "Browse Products" : "تصفح المنتجات"}
+              </Link>
+            </div>
+          )}
         </div>
-      ) : (
-        <p className="text-gray-600">{lang === "en" ? "No items in the cart." : "لا توجد منتجات في السلة."}</p>
-      )}
-    </div>
+
+        <aside className="h-fit rounded-lg border border-[#eadfd6] bg-white p-5 shadow-sm lg:sticky lg:top-28">
+          <h2 className="text-xl font-extrabold text-[#2f2118]">
+            {lang === "en" ? "Payment Details" : "تفاصيل الدفع"}
+          </h2>
+
+          <div className="mt-5 space-y-3 text-sm">
+            <div className="flex justify-between gap-4">
+              <span className="text-gray-500">{lang === "en" ? "Products" : "المنتجات"}</span>
+              <span className="font-semibold">{totalItems}</span>
+            </div>
+            <div className="flex justify-between gap-4">
+              <span className="text-gray-500">{lang === "en" ? "Subtotal" : "المجموع"}</span>
+              <span className="font-semibold">{subtotal.toFixed(2)} {currency}</span>
+            </div>
+            <div className="flex justify-between gap-4">
+              <span className="text-gray-500">{lang === "en" ? "Delivery" : "التوصيل"}</span>
+              <span className="font-semibold">{delivery.toFixed(2)} {currency}</span>
+            </div>
+          </div>
+
+          <div className="my-5 border-t border-[#eadfd6]" />
+
+          <div className="flex justify-between gap-4 text-lg font-extrabold text-[#2f2118]">
+            <span>{lang === "en" ? "Total Price" : "السعر النهائي"}</span>
+            <span>{totalPrice.toFixed(2)} {currency}</span>
+          </div>
+
+          <button
+            onClick={handleCheckout}
+            disabled={cartItems.length === 0}
+            className="mt-5 w-full rounded-lg bg-[#2f2118] px-5 py-3 font-semibold text-white transition hover:bg-orange-500 disabled:cursor-not-allowed disabled:bg-gray-300"
+          >
+            {lang === "en" ? "Complete via WhatsApp" : "إكمال عبر واتساب"}
+          </button>
+
+          {cartItems.length > 0 && (
+            <button
+              onClick={clearCart}
+              className="mt-3 w-full rounded-lg border border-[#eadfd6] px-5 py-3 font-semibold text-[#2f2118] transition hover:border-red-200 hover:bg-red-50 hover:text-red-500"
+            >
+              {lang === "en" ? "Clear Cart" : "تفريغ السلة"}
+            </button>
+          )}
+        </aside>
+      </section>
+    </main>
   );
 }

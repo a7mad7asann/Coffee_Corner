@@ -5,7 +5,7 @@
       "delivery": "التوصيل",
       "products": "المنتجات",
       "about": "من نحن",
-      "logo": "/images/logos/nav_logo.png",
+      "logo": "  ركن القهوة",
       "searchPlaceholder": "ابحث هنا...",
       "language": "English"
     },
@@ -14,15 +14,16 @@
       "delivery": "Delivery",
       "products": "Products ",
       "about": "About Us",
-      "logo": "/images/logos/nav_logo.png",
+      "logo": "Coffee Croner",
       "searchPlaceholder": "Search...",
       "language": "العربية"
     }
   },
- "heroSection": {
+  "heroSection": {
     "en": {
       "backgroundImage": "/images/bg_img_hero.svg",
-      "title": "Enjoy your coffee",
+      "title": "Enjoy your",
+      "span": "Coffee",
       "description": "Boost your productivity and build your mood with a glass of coffee in the morning",
       "buttonText": "Order now",
       "moreMenu": "More menu",
@@ -35,7 +36,8 @@
     },
     "ar": {
       "backgroundImage": "/images/bg_img_hero.svg",
-      "title": "استمتع بالقهوة",
+      "title": "استمتع ",
+      "span": "بالقهوة",
       "description": "عزز إنتاجيتك وحسن مزاجك مع كوب من القهوة في الصباح",
       "buttonText": "اطلب الآن",
       "moreMenu": "المزيد من القائمة",
@@ -48,19 +50,63 @@
     }
   },
   "about": {
-    "en": {
-      "title": "About us",
-      "subtitle": "We provide quality coffee,\nand ready to deliver.",
-      "description": "We are a company that makes and distributes delicious drinks. Our main product is made with a secret recipe and available in stores worldwide.",
-      "image": "/images/about_coffe.png",
-      "button": "Get your coffee"
-    },
     "ar": {
       "title": "من نحن",
       "subtitle": "نحن نقدم قهوة عالية الجودة،\nوجاهزون للتوصيل.",
-      "description": "نحن شركة تقوم بصناعة وتوزيع المشروبات اللذيذة. منتجنا الرئيسي مصنوع بوصفة سرية ومتوفر في المتاجر حول العالم.",
+      "description": "نحن شركة تقوم بصناعة وتوزيع المشروبات اللذيذة. منتجنا الرئيسي مصنوع بوصفة سرية ومتوفّر في المتاجر حول العالم.",
+      "button": "احصل على قهوتك",
       "image": "/images/about_coffe.png",
-      "button": "احصل على قهوتك"
+      "values": [
+        {
+          "icon": "/images/icons/quality.svg",
+          "title": "جودة عالية",
+          "description": "نستخدم أجود حبوب القهوة."
+        },
+        {
+          "icon": "/images/icons/delivery.svg",
+          "title": "توصيل سريع",
+          "description": "قهوتك توصلك في وقت قياسي."
+        },
+        {
+          "icon": "/images/icons/team.svg",
+          "title": "فريق خبير",
+          "description": "فريقنا يعمل بشغف يومياً."
+        },
+        {
+          "icon": "/images/icons/sustainability.svg",
+          "title": "استدامة",
+          "description": "نحن نهتم بالبيئة وندعم الزراعة النظيفة."
+        }
+      ]
+    },
+    "en": {
+      "title": "About Us",
+      "subtitle": "We serve high-quality coffee,\nand we're ready to deliver.",
+      "description": "We are a company that crafts and distributes delicious beverages. Our main product is made with a secret recipe and is available in stores worldwide.",
+      "button": "Get Your Coffee",
+      "image": "/images/about_coffe.png",
+      "values": [
+        {
+          "icon": "/images/icons/quality.svg",
+          "title": "High Quality",
+          "description": "We use the finest coffee beans."
+        },
+        {
+          "icon": "/images/icons/delivery.svg",
+          "title": "Fast Delivery",
+          "description": "Your coffee arrives in record time."
+        },
+        {
+          "icon": "/images/icons/team.svg",
+          "title": "Expert Team",
+          "description": "Our team works passionately every day."
+        },
+        {
+          "icon": "/images/icons/sustainability.svg",
+          "title": "Sustainability",
+          "description": "We care for the environment and support clean farming."
+        }
+      ]
     }
   },
   "partnersSection": {
@@ -92,182 +138,86 @@
       }
     ]
   },
-  "valueSection": {
-    "ar": {
-      "title": "القيمة التي نقدمها لك",
-      "description": "نحن نحرص على تقديم أفضل الحلول العقارية، مع مزايا تناسب احتياجاتك وتضمن لك أفضل العروض.",
-      "image": "/images/building.png",
-      "accordion": [
-        {
-          "title": "أفضل أسعار الفائدة في السوق",
-          "content": "نحن نقدم لك أفضل أسعار الفائدة المتاحة، مما يساعدك في تحقيق أقصى استفادة من استثماراتك العقارية."
-        },
-        {
-          "title": "تجنب الأسعار غير المستقرة",
-          "content": "نضمن لك استقرار الأسعار وتوفير أفضل العروض، حتى لا تقلق بشأن التغيرات غير المتوقعة."
-        },
-        {
-          "title": "أفضل الأسعار في السوق",
-          "content": "احصل على عقارك بأفضل الأسعار التنافسية مع عروض حصرية تناسب احتياجاتك."
-        },
-        {
-          "title": "أمان بياناتك",
-          "content": "نولي أمان معلوماتك أهمية قصوى، حيث نوفر لك بيئة آمنة لحماية بياناتك الشخصية."
-        }
-      ]
-    },
+  "testimonialsSection": {
     "en": {
-      "title": "The Value We Offer You",
-      "description": "We strive to provide the best real estate solutions, with benefits that suit your needs and guarantee the best deals.",
-      "image": "/images/building.png",
-      "accordion": [
+      "title": "What they say about us",
+      "subtitle": "We always provide the best service and always maintain the quality of coffee",
+      "testimonials": [
         {
-          "title": "Best Interest Rates",
-          "content": "We offer you the best available interest rates, helping you make the most of your real estate investments."
+          "name": "Naura",
+          "text": "I really love the cappuccino, the coffee was very ",
+          "image": "/images/test_img.png"
         },
         {
-          "title": "Avoid Price Instability",
-          "content": "We ensure price stability and offer the best deals so you don’t have to worry about unexpected changes."
+          "name": "John",
+          "text": "This coffee shop is very convenient",
+          "image": "/images/test_img.png"
         },
         {
-          "title": "Best Market Prices",
-          "content": "Get your property at the best competitive prices with exclusive offers that suit your needs."
-        },
+          "name": "Azura",
+          "text": "The coffee menu here is very much",
+          "image": "/images/test_img.png"
+        }, 
         {
-          "title": "Data Security",
-          "content": "We prioritize the security of your information, providing a safe environment to protect your personal data."
+          "name": "Azura",
+          "text": "The coffee menu here is very much",
+          "image": "/images/test_img.png"
+        }, 
+        {
+          "name": "Azura",
+          "text": "The coffee menu here is very much",
+          "image": "/images/test_img.png"
         }
       ]
-    }
-  },
-  "gallerySection": {
-    "title": {
-      "ar": "معرض الصور",
-      "en": "Photo Gallery"
     },
-    "images": [
-      {
-        "src": "/images/build1.png",
-        "alt": {
-          "ar": "مبنى حديث بتصميم معماري مميز",
-          "en": "A modern building with a unique architectural design"
+    "ar": {
+      "title": "ماذا يقولون عنا",
+      "subtitle": "نحن دائمًا نقدم أفضل خدمة ونحافظ على جودة القهوة",
+      "testimonials": [
+        {
+          "name": "نورة",
+          "text": "أحببت الكابتشينو كثيرًا، كانت القهوة ناعمة جدًا",
+          "image": "/images/test_img.png"
+        },
+        {
+          "name": "جون",
+          "text": "هذا المقهى مريح جدًا وسهل الوصول",
+          "image": "/images/test_img.png"
+        },
+        {
+          "name": "أزورا",
+          "text": "قائمة القهوة هنا متنوعة جدًا",
+          "image": "/images/test_img.png"
+        },
+        {
+          "name": "أزورا",
+          "text": "قائمة القهوة هنا متنوعة جدًا",
+          "image": "/images/test_img.png"
+        },
+        {
+          "name": "أزورا",
+          "text": "قائمة القهوة هنا متنوعة جدًا",
+          "image": "/images/test_img.png"
+        },
+        {
+          "name": "أزورا",
+          "text": "قائمة القهوة هنا متنوعة جدًا",
+          "image": "/images/test_img.png"
         }
-      },
-      {
-        "src": "/images/build2.png",
-        "alt": {
-          "ar": "مجمع سكني فاخر بإطلالة رائعة",
-          "en": "A luxurious residential complex with a stunning view"
-        }
-      },
-      {
-        "src": "/images/build3.png",
-        "alt": {
-          "ar": "تصميم داخلي لمكتب عصري",
-          "en": "Interior design of a modern office"
-        }
-      },
-      {
-        "src": "/images/build4.png",
-        "alt": {
-          "ar": "منظر ليلي لناطحة سحاب",
-          "en": "Night view of a skyscraper"
-        }
-      },
-      {
-        "src": "/images/build5.png",
-        "alt": {
-          "ar": "مجمع تجاري حديث مع مساحات خضراء",
-          "en": "A modern commercial complex with green spaces"
-        }
-      },
-      {
-        "src": "/images/build6.png",
-        "alt": {
-          "ar": "شقة راقية بتصميم مودرن",
-          "en": "A luxurious apartment with a modern design"
-        }
-      },
-      {
-        "src": "/images/build7.png",
-        "alt": {
-          "ar": "مبنى إداري بواجهة زجاجية أنيقة",
-          "en": "An administrative building with an elegant glass facade"
-        }
-      },
-      {
-        "src": "/images/build8.png",
-        "alt": {
-          "ar": "مجمع سكني فاخر مع حديقة مركزية",
-          "en": "A luxurious residential complex with a central garden"
-        }
-      }
-    ]
-  },
-  "ar": {
-    "propertyType": [
-      "شقة",
-      "فيلا",
-      "منزل",
-      "استوديو"
-    ],
-    "condition": [
-      "جديد",
-      "مستعمل"
-    ],
-    "labels": {
-      "name": "الاسم الكامل",
-      "phone": "رقم الهاتف",
-      "address": "العنوان",
-      "propertyType": "نوع العقار",
-      "rooms": "عدد الغرف",
-      "area": "المساحة (م²)",
-      "condition": "حالة العقار",
-      "price": "السعر",
-      "negotiable": "السعر قابل للتفاوض",
-      "search": "البحث عن عقار (تواصل معنا)"
-    }
-  },
-  "en": {
-    "propertyType": [
-      "Apartment",
-      "Villa",
-      "House",
-      "Studio"
-    ],
-    "condition": [
-      "New",
-      "Used"
-    ],
-    "labels": {
-      "name": "Full Name",
-      "phone": "Phone Number",
-      "address": "Address",
-      "propertyType": "Property Type",
-      "rooms": "Rooms",
-      "area": "Area (m²)",
-      "condition": "Condition",
-      "price": "Price",
-      "negotiable": "Negotiable Price",
-      "search": "Search for Property (Contact Us)"
+      ]
     }
   },
   "footer": {
     "ar": {
-      "company": "الحاجه",
-      "slogan": "ابحث عن عقارك المثالي معنا.",
+      "company": "  ركن القهوة ",
+      "slogan": "قهوتك تظبط مزاجك.",
       "contact": {
         "phone": [
           "+123 456 7890",
           "+123 456 7890"
         ],
         "email": "support@hyperestate.com",
-        "address": "123 شارع العقارات، نيويورك، الولايات المتحدة"
-      },
-      "offer": {
-        "title": "عرض حصري",
-        "description": "سجل الآن واحصل على خصم 10% على أول عملية شراء عقارية.",
-        "button": "احصل على العرض"
+        "address": "123 شارع  نيويورك، الولايات المتحدة"
       },
       "follow": "تابعنا على:",
       "social": {
@@ -276,10 +226,10 @@
         "instagram": "#",
         "linkedin": "#"
       },
-      "copyright": "© 2025 الحاجه. جميع الحقوق محفوظة."
+      "copyright": "© 2025 Coffee Croner. جميع الحقوق محفوظة."
     },
     "en": {
-      "company": "Al Hagga",
+      "company": "Coffee Croner",
       "slogan": "Find your perfect property with us.",
       "contact": {
         "phone": [
@@ -287,12 +237,7 @@
           "+123 456 7890"
         ],
         "email": "support@hyperestate.com",
-        "address": "123 Real Estate St, New York, USA"
-      },
-      "offer": {
-        "title": "Exclusive Offer",
-        "description": "Sign up now and get 10% off your first real estate purchase.",
-        "button": "Get the Offer"
+        "address": "123   St, New York, USA"
       },
       "follow": "Follow us on:",
       "social": {
@@ -301,8 +246,46 @@
         "instagram": "#",
         "linkedin": "#"
       },
-      "copyright": "© 2025 Al Haga. All rights reserved."
+      "copyright": "© 2025 Coffee Croner. All rights reserved."
     }
+  },
+  "links": {
+    "ar": [
+      {
+        "label": "من نحن",
+        "url": "/about"
+      },
+      {
+        "label": "الأسئلة الشائعة",
+        "url": ""
+      },
+      {
+        "label": "سياسة الخصوصية",
+        "url": "#"
+      },
+      {
+        "label": "الشروط والأحكام",
+        "url": "#"
+      }
+    ],
+    "en": [
+      {
+        "label": "About Us",
+        "url": "about"
+      },
+      {
+        "label": "FAQs",
+        "url": "#"
+      },
+      {
+        "label": "Privacy Policy",
+        "url": "#"
+      },
+      {
+        "label": "Terms & Conditions",
+        "url": "#"
+      }
+    ]
   },
   "cartContent": {
     "en": {
