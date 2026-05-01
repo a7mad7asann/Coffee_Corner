@@ -17,7 +17,9 @@ export default function ProductCard({ product }) {
     }
 
     addFromCart(product.id, selectedTag);
-    toast.success(lang === "en" ? "Added to cart successfully" : "تمت الإضافة للسلة");
+    toast.success(
+      lang === "en" ? "Added to cart successfully" : "تمت الإضافة للسلة",
+    );
   };
 
   return (
@@ -27,13 +29,17 @@ export default function ProductCard({ product }) {
     >
       <div className="absolute right-5 top-5 z-10 flex items-center gap-1 rounded-lg bg-white/95 px-2 py-1 text-sm font-semibold shadow">
         <span>{product.rating || "4.8"}</span>
-        <span className="text-yellow-400">★</span>
+        <span className="text-yellow-400" aria-hidden="true">★</span>
       </div>
 
       <div className="mb-4 flex h-48 items-center justify-center rounded-lg bg-[#fff7ef]">
         <img
           src={product.image}
           alt={product.name}
+          width="160"
+          height="160"
+          loading="lazy"
+          decoding="async"
           className="h-40 w-full object-contain transition duration-300 group-hover:scale-105"
         />
       </div>
@@ -43,7 +49,9 @@ export default function ProductCard({ product }) {
           <p className="text-sm font-medium text-orange-500">
             {lang === "en" ? "Coffee" : "قهوة"}
           </p>
-          <h3 className="mt-1 text-lg font-bold leading-tight">{product.name}</h3>
+          <h3 className="mt-1 text-lg font-bold leading-tight">
+            {product.name}
+          </h3>
         </div>
         <span className="whitespace-nowrap text-lg font-extrabold text-[#2f2118]">
           {product.price} {lang === "en" ? "$" : "ريال"}

@@ -12,22 +12,19 @@ import Banner from "../sections/Banner";
 import Categories from "../sections/Categories";
 export default function Home() {
   return (
-    <>
-      <div className="overflow-hidden bg-[#fff8ef]">
-        <Hero />
-        <Categories />
-        <PopProduct />
-        <Banner />
-        <PopProduct />
-        <PromoBanners />
-        <About />
-        <SpecialMenu />
-        <Testimonials />
-        {/* <Mques /> */}
-        {/* <Gallery /> */}
-        {/* <Form /> */}
-      </div>
-       
-    </>
+    <main className="overflow-hidden bg-[#fff8ef]">
+      <Hero />
+      <Categories />
+      <PopProduct />
+      <Banner />
+      <PopProduct />
+      <PromoBanners />
+      <About />
+      <SpecialMenu />
+      <Testimonials />
+      {/* <Mques /> */}
+      {/* <Gallery /> */}
+      {/* <Form /> */}
+    </main>
   );
 }

@@ -10,7 +10,7 @@ export default function Testimonials() {
   const allTestimonials = content.testimonials.slice(0, 4);
   const featured = allTestimonials[0];
   const sliderTestimonials = allTestimonials.slice(1);
-  
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Auto-scroll every 5 seconds
@@ -27,8 +27,8 @@ export default function Testimonials() {
   }, [lang]);
 
   return (
-    <section 
-      className="relative overflow-hidden bg-[#fff8ef] py-16 md:py-20" 
+    <section
+      className="relative overflow-hidden bg-[#fff8ef] py-16 md:py-20"
       dir={lang === "ar" ? "rtl" : "ltr"}
     >
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white to-transparent" />
@@ -70,7 +70,7 @@ export default function Testimonials() {
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
               className="absolute end-6 top-6"
             >
               <Quote size={80} className="text-white/5" />
@@ -92,7 +92,10 @@ export default function Testimonials() {
                     whileInView={{ scale: 1, rotate: 0 }}
                     transition={{ duration: 0.4, delay: 0.2 + i * 0.05 }}
                   >
-                    <Star size={18} className="fill-orange-300 text-orange-300" />
+                    <Star
+                      size={18}
+                      className="fill-orange-300 text-orange-300"
+                    />
                   </motion.div>
                 ))}
               </motion.div>
@@ -101,8 +104,8 @@ export default function Testimonials() {
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-xl font-bold leading-8 md:text-2xl"
+                transition={{ duration: 0.4, delay: 0.2 }}
+                className="text-xl font-bold leading-8 md:text-2xl will-change-opacity"
               >
                 "{featured.text}"
               </motion.p>
@@ -117,9 +120,11 @@ export default function Testimonials() {
                 <motion.img
                   src={featured.image}
                   alt={featured.name}
+                  width="56"
+                  height="56"
+                  loading="lazy"
+                  decoding="async"
                   className="h-14 w-14 rounded-lg border border-white/20 object-cover"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
                 />
                 <div>
                   <h3 className="font-black text-base">{featured.name}</h3>
@@ -157,6 +162,10 @@ export default function Testimonials() {
                         <img
                           src={sliderTestimonials[currentIndex].image}
                           alt={sliderTestimonials[currentIndex].name}
+                          width="48"
+                          height="48"
+                          loading="lazy"
+                          decoding="async"
                           className="h-12 w-12 rounded-lg object-cover"
                         />
                         <div>
@@ -165,12 +174,19 @@ export default function Testimonials() {
                           </h3>
                           <div className="mt-1 flex gap-0.5">
                             {Array.from({ length: 5 }).map((_, i) => (
-                              <Star key={i} size={12} className="fill-orange-400 text-orange-400" />
+                              <Star
+                                key={i}
+                                size={12}
+                                className="fill-orange-400 text-orange-400"
+                              />
                             ))}
                           </div>
                         </div>
                       </div>
-                      <Quote size={20} className="text-orange-200 flex-shrink-0" />
+                      <Quote
+                        size={20}
+                        className="text-orange-200 flex-shrink-0"
+                      />
                     </div>
 
                     {/* Text */}

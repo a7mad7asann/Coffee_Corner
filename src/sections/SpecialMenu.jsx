@@ -1,34 +1,28 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { ShoppingCart, Star } from "lucide-react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import toast from "react-hot-toast";
 import { LanguageContext } from "../context/LanguageContext";
 import { useCart } from "../context/CartContext";
+import { useAppData } from "../context/AppDataContext";
 
 export default function SpecialMenu() {
   const { lang } = useContext(LanguageContext);
   const { addToCart } = useCart();
-  const [products, setProducts] = useState([]);
+  const { productsData } = useAppData();
+  const products = useMemo(
+    () => (productsData?.[lang]?.products || []).slice(0, 6),
+    [productsData, lang],
+  );
   const [selectedOptions, setSelectedOptions] = useState({});
 
   useEffect(() => {
-    fetch("/products.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const productsData = (data[lang]?.products || []).slice(0, 6);
-        setProducts(productsData);
-        setSelectedOptions(
-          productsData.reduce((acc, product) => {
-            acc[product.id] = product.tags[0];
-            return acc;
-          }, {})
-        );
-      })
-      .catch((error) => console.error("Error loading products:", error));
-
-    AOS.init({ duration: 800, delay: 100 });
-  }, [lang]);
+    setSelectedOptions(
+      products.reduce((acc, product) => {
+        acc[product.id] = product.tags?.[0] || "";
+        return acc;
+      }, {}),
+    );
+  }, [products]);
 
   return (
     <section className="bg-[#fff8ef] py-16" dir={lang === "ar" ? "rtl" : "ltr"}>
@@ -38,7 +32,10 @@ export default function SpecialMenu() {
             <p className="text-sm font-bold uppercase tracking-wide text-orange-500">
               {lang === "en" ? "Special Menu" : "قائمة خاصة"}
             </p>
-            <h2 className="mt-2 text-3xl font-black text-[#2f2118] md:text-4xl" data-aos="fade-right">
+            <h2
+              className="mt-2 text-3xl font-black text-[#2f2118] md:text-4xl"
+              data-aos="fade-right"
+            >
               {lang === "en" ? "Picked for you" : "مختارة لك"}
             </h2>
           </div>
@@ -58,7 +55,15 @@ export default function SpecialMenu() {
               data-aos-delay={index * 80}
             >
               <div className="relative flex h-full min-h-[150px] items-center justify-center rounded-lg bg-[#fff1e5]">
-                <img src={product.image} alt={product.name} className="h-28 w-full object-contain" />
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  width="118"
+                  height="118"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-28 w-full object-contain"
+                />
                 <span className="absolute start-2 top-2 flex items-center gap-1 rounded-lg bg-white px-2 py-1 text-xs font-bold text-[#2f2118] shadow">
                   <Star size={12} className="fill-orange-400 text-orange-400" />
                   {product.rating}
@@ -67,7 +72,9 @@ export default function SpecialMenu() {
 
               <div className="flex min-w-0 flex-col">
                 <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-lg font-black leading-tight text-[#2f2118]">{product.name}</h3>
+                  <h3 className="text-lg font-black leading-tight text-[#2f2118]">
+                    {product.name}
+                  </h3>
                   <span className="whitespace-nowrap font-black text-orange-500">
                     {product.price} {lang === "en" ? "$" : "ريال"}
                   </span>
@@ -77,7 +84,12 @@ export default function SpecialMenu() {
                   {product.tags.map((tag) => (
                     <button
                       key={tag}
-                      onClick={() => setSelectedOptions((prev) => ({ ...prev, [product.id]: tag }))}
+                      onClick={() =>
+                        setSelectedOptions((prev) => ({
+                          ...prev,
+                          [product.id]: tag,
+                        }))
+                      }
                       className={`rounded-lg border px-3 py-1 text-xs font-bold transition ${
                         selectedOptions[product.id] === tag
                           ? "border-orange-500 bg-orange-500 text-white"
@@ -91,8 +103,15 @@ export default function SpecialMenu() {
 
                 <button
                   onClick={() => {
-                    addToCart({ ...product, selectedTag: selectedOptions[product.id] });
-                    toast.success(lang === "en" ? "Added to cart successfully" : "تمت الإضافة للسلة");
+                    addToCart({
+                      ...product,
+                      selectedTag: selectedOptions[product.id],
+                    });
+                    toast.success(
+                      lang === "en"
+                        ? "Added to cart successfully"
+                        : "تمت الإضافة للسلة",
+                    );
                   }}
                   className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#2f2118] px-4 py-2.5 text-sm font-bold text-white transition hover:bg-orange-500"
                 >

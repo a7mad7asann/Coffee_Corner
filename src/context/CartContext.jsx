@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 const CartContext = createContext();
 
@@ -26,17 +26,21 @@ export function CartProvider({ children }) {
   function addToCart(product) {
     setCart((prevCart) => {
       const existingItem = prevCart.find(
-        (item) => item.id === product.id && item.selectedTag === product.selectedTag
+        (item) =>
+          item.id === product.id && item.selectedTag === product.selectedTag,
       );
 
       if (existingItem) {
         return prevCart.map((item) =>
           item.id === product.id && item.selectedTag === product.selectedTag
             ? { ...item, quantity: item.quantity + 1 }
-            : item
+            : item,
         );
       } else {
-        return [...prevCart, { id: product.id, selectedTag: product.selectedTag, quantity: 1 }];
+        return [
+          ...prevCart,
+          { id: product.id, selectedTag: product.selectedTag, quantity: 1 },
+        ];
       }
     });
   }
@@ -76,7 +80,7 @@ export function CartProvider({ children }) {
           }
           return item;
         })
-        .filter(Boolean)
+        .filter(Boolean),
     );
   }
 
@@ -85,11 +89,12 @@ export function CartProvider({ children }) {
     setCart([]);
   }
 
-  return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, addFromCart }}>
-      {children}
-    </CartContext.Provider>
+  const value = useMemo(
+    () => ({ cart, addToCart, removeFromCart, clearCart, addFromCart }),
+    [cart],
   );
+
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
 
 // ✅ هوك لاستخدام السلة بسهولة في أي مكان بالمشروع

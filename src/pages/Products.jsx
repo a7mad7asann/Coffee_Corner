@@ -1,26 +1,26 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { LanguageContext } from "../context/LanguageContext";
+import { useAppData } from "../context/AppDataContext";
 import ProductCard from "../component/ProductCard";
 
 export default function Products() {
   const { lang } = useContext(LanguageContext);
-  const [products, setProducts] = useState([]);
+  const { productsData } = useAppData();
+  const products = productsData?.[lang]?.products || [];
 
   useEffect(() => {
-    fetch("/products.json")
-      .then((res) => res.json())
-      .then((data) => setProducts(data[lang]?.products || []))
-      .catch((err) => console.error("Error loading products:", err));
-
     document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
   }, [lang]);
 
   return (
-    <main className="min-h-screen bg-white pt-24" dir={lang === "ar" ? "rtl" : "ltr"}>
+    <main
+      className="min-h-screen bg-white pt-24"
+      dir={lang === "ar" ? "rtl" : "ltr"}
+    >
       <section className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-lg bg-[#2f2118] px-6 py-10 text-white md:px-10">
-          <div className="absolute inset-y-0 end-0 hidden w-1/2 bg-[url('/images/bannerr.png')] bg-cover bg-center opacity-30 md:block" />
+          <div className="absolute inset-y-0 end-0 hidden w-1/2 bg-[url('/images/bannerr.webp')] bg-cover bg-center opacity-30 md:block" />
           <div className="relative max-w-2xl">
             <p className="text-sm font-bold uppercase tracking-wide text-orange-300">
               {lang === "en" ? "Our Menu" : "قائمتنا"}

@@ -1,47 +1,51 @@
-import { useState, useEffect } from "react";
-import CoffeeLoader from "./component/CoffeeLoader.jsx"; // غيّر من BuildingLoader
-
+import { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { LanguageProvider } from "./context/LanguageContext";
+import { useAppData } from "./context/AppDataContext";
+import CoffeeLoader from "./component/CoffeeLoader.jsx";
 import Nav from "./component/Navbarr";
-import Home from "./pages/Home.jsx";
-import Cart from "./pages/Cart.jsx";
-import About from "./sections/About";
-import Mques from "./sections/CTA";
-import Products from "./pages/Products.jsx";
-import Form from "./sections/Form";
-import Prtner from "./sections/PopularProduct.jsx";
 import Footer from "./component/Footer";
-import { Toaster } from 'react-hot-toast'; // ⬅️ استيراد التوستر
+import { Toaster } from "react-hot-toast";
+
+// Lazy load pages and sections
+const Home = lazy(() => import("./pages/Home.jsx"));
+const Cart = lazy(() => import("./pages/Cart.jsx"));
+const Products = lazy(() => import("./pages/Products.jsx"));
+const About = lazy(() => import("./sections/About"));
+const Mques = lazy(() => import("./sections/CTA"));
+const Form = lazy(() => import("./sections/Form"));
+const Prtner = lazy(() => import("./sections/PopularProduct.jsx"));
+
+const PageLoader = () => (
+  <div className="flex h-screen items-center justify-center">
+    <div className="h-2 w-16 animate-pulse bg-orange-500 rounded" />
+  </div>
+);
 
 function App() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => setLoading(false), 1200);
-    return () => window.clearTimeout(timer);
-  }, []);
+  const { loading } = useAppData();
 
   return (
     <LanguageProvider>
       <Router>
         <CoffeeLoader loading={loading} />
         {!loading && <Nav />}
-        
-        {/* ✅ مكون التوست لإظهار الرسائل في كل الصفحات */}
+
         <Toaster position="top-center" />
 
         {!loading && (
-          <Routes>
-            <Route path="/"         element={<Home     />} />
-            <Route path="/cart"     element={<Cart     />} />
-            <Route path="/about"    element={<About    />} />
-            <Route path="/cta"      element={<Mques    />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/form"     element={<Form     />} />
-            <Route path="/partners" element={<Prtner   />} />
-          </Routes>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/cta" element={<Mques />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/form" element={<Form />} />
+              <Route path="/partners" element={<Prtner />} />
+            </Routes>
+          </Suspense>
         )}
 
         {!loading && <Footer />}
@@ -51,71 +55,3 @@ function App() {
 }
 
 export default App;
-
-
-// import { useState, useEffect } from "react";
-// import BuildingLoader from "./component/BuildingLoader.jsx"; 
-// import {  BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import { LanguageProvider } from "./context/LanguageContext";
-// import Nav from "./component/Navbarr";
-// import Home from "./pages/Home.jsx";
-// import Cart from "./pages/Cart.jsx"
-// import About from "./sections/About";
-// import Mques from "./sections/CTA";
-// import Products from "./pages/Products.jsx";
-// import Form from "./sections/Form";
-// import Prtner from "./sections/PopularProduct.jsx";
-// import { Toaster } from 'react-hot-toast'; // ⬅️ استيراد التوستر
-// import Footer from "./component/Footer";
-
-// function App() {
-//   // const [loading, setLoading] = useState(true);
-
-//   // useEffect(() => {
-//   //   setTimeout(() => {
-//   //     setLoading(false);
-//   //   }, 2000); // مدة الانتظار (2 ثانية)
-//   // }, []);
-
-//   return (
-//     // <LanguageProvider>
-//     //   <Router>
-//     //     <BuildingLoader loading={loading} />
-//     //     {!loading && (
-//     //       <>
-//     //         <Nav />
-//     //         <Hero />
-//     //         <Prtner />
-//     //         <About />
-//     //         <Mques />
-//     //         <Gallery />
-//     //         <Form />
-//     //         <Footer />
-//     //       </>
-//     //     )}
-//     //   </Router>
-//     // </LanguageProvider>
-    
-//     <LanguageProvider>
-//       <Router>
-//         <Nav />
-        
-//         <Toaster position="top-center" />
-
-//         <Routes>
-//           <Route path="/"         element={<Home    />} />
-//           <Route path="/cart"     element={<Cart    />} />
-//           <Route path="/about"    element={<About   />} />
-//           <Route path="/cta"      element={<Mques   />} />
-//           <Route path="/Products"  element={<Products />} />
-//           <Route path="/form"     element={<Form    />} />
-//           <Route path="/partners" element={<Prtner  />} />
-//         </Routes>
-
-//         {/* <Footer /> */}
-//       </Router>
-//     </LanguageProvider>
-//   );
-// }
-
-// export default App;

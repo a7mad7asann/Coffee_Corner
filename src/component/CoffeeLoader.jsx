@@ -26,7 +26,7 @@ export default function BuildingLoader({ loading }) {
       className="fixed inset-0 z-50 bg-white flex items-center justify-center overflow-hidden"
     >
       {/* Animated Background Gradient */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 will-change-opacity">
         <motion.div
           className="absolute inset-0 bg-gradient-to-br from-orange-100/20 via-transparent to-orange-50/15"
           animate={{
@@ -41,7 +41,7 @@ export default function BuildingLoader({ loading }) {
       </div>
 
       {/* Coffee Cup Container */}
-      <div className="relative z-10">
+      <div className="relative z-10 will-change-transform">
         {/* Coffee Cup SVG Animation */}
         <motion.svg
           width="140"
@@ -79,7 +79,13 @@ export default function BuildingLoader({ loading }) {
 
           {/* Gradient Definitions */}
           <defs>
-            <linearGradient id="cupGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient
+              id="cupGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
               <stop offset="0%" stopColor="#ea580c" />
               <stop offset="100%" stopColor="#b85c1a" />
             </linearGradient>
@@ -113,7 +119,13 @@ export default function BuildingLoader({ loading }) {
 
             {/* Liquid Gradient */}
             <defs>
-              <linearGradient id="liquidGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <linearGradient
+                id="liquidGradient"
+                x1="0%"
+                y1="0%"
+                x2="0%"
+                y2="100%"
+              >
                 <stop offset="0%" stopColor="#d97706" />
                 <stop offset="100%" stopColor="#92400e" />
               </linearGradient>
@@ -125,15 +137,16 @@ export default function BuildingLoader({ loading }) {
                 key={i}
                 cx="60"
                 cy="80"
-                r="5"
+                r={5}
                 fill="none"
                 stroke="#f97316"
                 strokeWidth="1"
                 opacity="0.6"
                 animate={{
-                  r: [5, 25],
+                  scale: [1, 2.5],
                   opacity: [0.6, 0],
                 }}
+                style={{ transformOrigin: "60px 80px" }}
                 transition={{
                   duration: 1.5,
                   repeat: Infinity,

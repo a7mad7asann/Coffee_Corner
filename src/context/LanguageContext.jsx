@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useMemo } from "react";
 
 // إنشاء السياق
 export const LanguageContext = createContext();
@@ -11,8 +11,10 @@ export const LanguageProvider = ({ children }) => {
     localStorage.setItem("lang", lang);
   }, [lang]);
 
+  const value = useMemo(() => ({ lang, setLang }), [lang]);
+
   return (
-    <LanguageContext.Provider value={{ lang, setLang }}>
+    <LanguageContext.Provider value={value}>
       {children}
     </LanguageContext.Provider>
   );
