@@ -1,9 +1,8 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Check } from "lucide-react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { LanguageContext } from "../context/LanguageContext";
+import { useAppData } from "../context/AppDataContext";
 
 const AccordionItem = ({ title, content, isOpen, toggle }) => {
   return (
@@ -31,8 +30,16 @@ const AccordionItem = ({ title, content, isOpen, toggle }) => {
           <motion.div
             className="overflow-hidden"
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto", transition: { duration: 0.4, ease: "easeInOut" } }}
-            exit={{ opacity: 0, height: 0, transition: { duration: 0.3, ease: "easeInOut" } }}
+            animate={{
+              opacity: 1,
+              height: "auto",
+              transition: { duration: 0.4, ease: "easeInOut" },
+            }}
+            exit={{
+              opacity: 0,
+              height: 0,
+              transition: { duration: 0.3, ease: "easeInOut" },
+            }}
           >
             <p className="mt-2 text-gray-600">{content}</p>
           </motion.div>
@@ -44,27 +51,16 @@ const AccordionItem = ({ title, content, isOpen, toggle }) => {
 
 export default function ValueSection() {
   const { lang } = useContext(LanguageContext);
+  const { data } = useAppData();
   const [openIndex, setOpenIndex] = useState(null);
-  const [content, setContent] = useState(null);
-
-  useEffect(() => {
-    AOS.init({
-      duration: 700,
-      easing: "ease-in-out",
-      once: true,
-    });
-
-    fetch("/data.json")
-      .then((response) => response.json())
-      .then((json) => setContent(json.valueSection[lang]))
-      .catch((error) => console.error("Error loading data:", error));
-  }, [lang]);
+  const content = data?.valueSection?.[lang] || null;
 
   const toggleAccordion = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  if (!content) return <p className="text-center text-gray-500">جار التحميل...</p>;
+  if (!content)
+    return <p className="text-center text-gray-600">جار التحميل...</p>;
 
   return (
     <section
@@ -76,6 +72,10 @@ export default function ValueSection() {
         <img
           src={content.image}
           alt="مبنى"
+          width="720"
+          height="480"
+          loading="lazy"
+          decoding="async"
           className="w-full rounded-lg shadow-lg"
         />
       </div>
@@ -85,8 +85,12 @@ export default function ValueSection() {
         <h2 className="text-3xl font-bold mb-4" data-aos="fade-up">
           {content.title}
         </h2>
-        
-        <p className="text-gray-500 mb-6" data-aos="fade-up" data-aos-delay="200">
+
+        <p
+          className="text-gray-600 mb-6"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
           {content.description}
         </p>
 

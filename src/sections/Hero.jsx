@@ -1,18 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Coffee, Star } from "lucide-react";
 import { LanguageContext } from "../context/LanguageContext";
+import { useAppData } from "../context/AppDataContext";
 
 export default function HeroSection() {
   const { lang } = useContext(LanguageContext);
-  const [content, setContent] = useState(null);
-
-  useEffect(() => {
-    fetch("/data.json")
-      .then((response) => response.json())
-      .then((data) => setContent(data.heroSection[lang]));
-  }, [lang]);
+  const { data } = useAppData();
+  const content = data?.heroSection?.[lang] || null;
 
   useEffect(() => {
     document.documentElement.lang = lang;
@@ -59,7 +55,8 @@ export default function HeroSection() {
 
             <span className="inline-flex items-center gap-2 rounded-lg border border-[#ead8ca] bg-white px-5 py-3 text-sm font-bold text-[#2f2118]">
               <Star size={16} className="fill-orange-400 text-orange-400" />
-              {content.cat.rating} {lang === "en" ? "customer rating" : "تقييم العملاء"}
+              {content.cat.rating}{" "}
+              {lang === "en" ? "customer rating" : "تقييم العملاء"}
             </span>
           </div>
         </motion.div>
@@ -74,22 +71,34 @@ export default function HeroSection() {
             <img
               src={content.backgroundImage}
               alt=""
+              width="940"
+              height="940"
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 h-full w-full object-cover opacity-15"
             />
             <div className="absolute inset-5 rounded-lg border border-white/10" />
             <img
               src={content.cat.image}
               alt={content.cat.name}
+              width="370"
+              height="370"
+              loading="lazy"
+              decoding="async"
               className="relative z-10 h-[78%] w-[78%] object-contain drop-shadow-2xl"
             />
 
             <div className="absolute start-4 top-5 z-20 rounded-lg bg-white px-4 py-3 shadow-lg">
-              <p className="text-xs font-semibold text-gray-500">{lang === "en" ? "Best seller" : "الأكثر طلبا"}</p>
+              <p className="text-xs font-semibold text-gray-600">
+                {lang === "en" ? "Best seller" : "الأكثر طلبا"}
+              </p>
               <p className="font-black text-[#2f2118]">{content.cat.name}</p>
             </div>
 
             <div className="absolute bottom-5 end-4 z-20 rounded-lg bg-orange-500 px-4 py-3 text-white shadow-lg">
-              <p className="text-xs font-semibold text-orange-100">{lang === "en" ? "Sold" : "مبيعات"}</p>
+              <p className="text-xs font-semibold text-orange-100">
+                {lang === "en" ? "Sold" : "مبيعات"}
+              </p>
               <p className="font-black">{content.cat.sales}</p>
             </div>
           </div>

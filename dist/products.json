@@ -4,7 +4,7 @@
       {
         "id": 1,
         "name": "Vanilla Latte",
-        "image": "/images/product_1.png",
+        "image": "/images/product_1.webp",
         "rating": 4.8,
         "price": "21",
         "tags": [
@@ -16,7 +16,7 @@
       {
         "id": 2,
         "name": "Espresso",
-        "image": "/images/product_2.png",
+        "image": "/images/product_2.webp",
         "rating": 4.9,
         "price": "12",
         "tags": [
@@ -26,7 +26,7 @@
       {
         "id": 3,
         "name": "Hazelnut Latte",
-        "image": "/images/product_3.png",
+        "image": "/images/product_3.webp",
         "rating": 4.8,
         "price": "23",
         "tags": [
@@ -37,7 +37,7 @@
       {
         "id": 4,
         "name": "Hazelnut Latte",
-        "image": "/images/product_3.png",
+        "image": "/images/product_3.webp",
         "rating": 4.8,
         "price": "23",
         "tags": [
@@ -48,7 +48,7 @@
       {
         "id": 5,
         "name": "Hazelnut Latte",
-        "image": "/images/product_3.png",
+        "image": "/images/product_3.webp",
         "rating": 4.8,
         "price": "23",
         "tags": [
@@ -59,7 +59,7 @@
       {
         "id": 6,
         "name": "Hazelnut Latte",
-        "image": "/images/product_3.png",
+        "image": "/images/product_3.webp",
         "rating": 4.8,
         "price": "23",
         "tags": [
@@ -74,7 +74,7 @@
       {
         "id": 1,
         "name": "فانيلا لاتيه",
-        "image": "/images/product_1.png",
+        "image": "/images/product_1.webp",
         "rating": 4.8,
         "price": "21",
         "tags": [
@@ -86,7 +86,7 @@
       {
         "id": 2,
         "name": "إسبريسو",
-        "image": "/images/product_2.png",
+        "image": "/images/product_2.webp",
         "rating": 4.9,
         "price": "12",
         "tags": [
@@ -96,7 +96,7 @@
       {
         "id": 3,
         "name": "بندق لاتيه",
-        "image": "/images/product_3.png",
+        "image": "/images/product_3.webp",
         "rating": 4.8,
         "price": "23",
         "tags": [
@@ -107,7 +107,7 @@
       {
         "id": 4,
         "name": "بندق لاتيه",
-        "image": "/images/product_3.png",
+        "image": "/images/product_3.webp",
         "rating": 4.8,
         "price": "23",
         "tags": [
@@ -118,7 +118,7 @@
       {
         "id": 5,
         "name": "بندق لاتيه",
-        "image": "/images/product_3.png",
+        "image": "/images/product_3.webp",
         "rating": 4.8,
         "price": "23",
         "tags": [
@@ -129,7 +129,7 @@
       {
         "id": 6,
         "name": "بندق لاتيه",
-        "image": "/images/product_3.png",
+        "image": "/images/product_3.webp",
         "rating": 4.8,
         "price": "23",
         "tags": [

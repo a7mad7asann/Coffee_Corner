@@ -29,7 +29,7 @@
       "moreMenu": "More menu",
       "cat": {
         "name": "Cappuccino",
-        "image": "/images/product_back.png",
+        "image": "/images/product_back.webp",
         "rating": "4.8",
         "sales": "18K"
       }
@@ -43,7 +43,7 @@
       "moreMenu": "المزيد من القائمة",
       "cat": {
         "name": "كابتشينو",
-        "image": "/images/product_back.png",
+        "image": "/images/product_back.webp",
         "rating": "4.8",
         "sales": "18 ألف"
       }
@@ -55,7 +55,7 @@
       "subtitle": "نحن نقدم قهوة عالية الجودة،\nوجاهزون للتوصيل.",
       "description": "نحن شركة تقوم بصناعة وتوزيع المشروبات اللذيذة. منتجنا الرئيسي مصنوع بوصفة سرية ومتوفّر في المتاجر حول العالم.",
       "button": "احصل على قهوتك",
-      "image": "/images/about_coffe.png",
+      "image": "/images/about_coffe.webp",
       "values": [
         {
           "icon": "/images/icons/quality.svg",
@@ -84,7 +84,7 @@
       "subtitle": "We serve high-quality coffee,\nand we're ready to deliver.",
       "description": "We are a company that crafts and distributes delicious beverages. Our main product is made with a secret recipe and is available in stores worldwide.",
       "button": "Get Your Coffee",
-      "image": "/images/about_coffe.png",
+      "image": "/images/about_coffe.webp",
       "values": [
         {
           "icon": "/images/icons/quality.svg",
@@ -146,27 +146,27 @@
         {
           "name": "Naura",
           "text": "I really love the cappuccino, the coffee was very ",
-          "image": "/images/test_img.png"
+          "image": "/images/test_img.webp"
         },
         {
           "name": "John",
           "text": "This coffee shop is very convenient",
-          "image": "/images/test_img.png"
+          "image": "/images/test_img.webp"
         },
         {
           "name": "Azura",
           "text": "The coffee menu here is very much",
-          "image": "/images/test_img.png"
+          "image": "/images/test_img.webp"
         }, 
         {
           "name": "Azura",
           "text": "The coffee menu here is very much",
-          "image": "/images/test_img.png"
+          "image": "/images/test_img.webp"
         }, 
         {
           "name": "Azura",
           "text": "The coffee menu here is very much",
-          "image": "/images/test_img.png"
+          "image": "/images/test_img.webp"
         }
       ]
     },
@@ -177,32 +177,43 @@
         {
           "name": "نورة",
           "text": "أحببت الكابتشينو كثيرًا، كانت القهوة ناعمة جدًا",
-          "image": "/images/test_img.png"
+          "image": "/images/test_img.webp"
         },
+         {
+          "name": "نورة",
+          "text": "أحببت الكابتشينو كثيرًا، كانت القهوة ناعمة جدًا",
+          "image": "/images/test_img.webp"
+        },
+          {
+          "name": "نورة",
+          "text": "أحببت الكابتشينو كثيرًا، كانت القهوة ناعمة جدًا",
+          "image": "/images/test_img.webp"
+        },
+        
         {
           "name": "جون",
           "text": "هذا المقهى مريح جدًا وسهل الوصول",
-          "image": "/images/test_img.png"
+          "image": "/images/test_img.webp"
         },
         {
           "name": "أزورا",
           "text": "قائمة القهوة هنا متنوعة جدًا",
-          "image": "/images/test_img.png"
+          "image": "/images/test_img.webp"
         },
         {
           "name": "أزورا",
           "text": "قائمة القهوة هنا متنوعة جدًا",
-          "image": "/images/test_img.png"
+          "image": "/images/test_img.webp"
         },
         {
           "name": "أزورا",
           "text": "قائمة القهوة هنا متنوعة جدًا",
-          "image": "/images/test_img.png"
+          "image": "/images/test_img.webp"
         },
         {
           "name": "أزورا",
           "text": "قائمة القهوة هنا متنوعة جدًا",
-          "image": "/images/test_img.png"
+          "image": "/images/test_img.webp"
         }
       ]
     }

@@ -12,6 +12,10 @@ export default {
   				DEFAULT: 'hsl(var(--primary))',
   				foreground: 'hsl(var(--primary-foreground))'
   			},
+  			orange: {
+  				400: '#ea580c',
+  				500: '#c2410c',
+  			},
   			dark: '#0A0A0A',
   			light: '#FFFFFF',
   			grayText: '#B0B0B0',

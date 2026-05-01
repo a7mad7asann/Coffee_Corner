@@ -72,7 +72,7 @@ export default function Categories() {
                   <span className="block text-base font-bold text-[#2f2118]">
                     {lang === "en" ? category.en : category.ar}
                   </span>
-                  <span className="mt-1 block text-sm text-gray-500">
+                  <span className="mt-1 block text-sm text-gray-600">
                     {lang === "en" ? category.noteEn : category.noteAr}
                   </span>
                 </span>

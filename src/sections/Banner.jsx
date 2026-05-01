@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { LanguageContext } from "../context/LanguageContext";
-import bannerBg from "../../public/images/bannerr.png";
+import bannerBg from "../../public/images/bannerr.webp";
 
 export default function Banner() {
   const { lang } = useContext(LanguageContext);

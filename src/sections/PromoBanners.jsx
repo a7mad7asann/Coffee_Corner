@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { LanguageContext } from "../context/LanguageContext";
-import imgbanner from "../../public/images/banner.png";
+import imgbanner from "../../public/images/banner.webp";
 
 export default function PromoBanner() {
   const { lang } = useContext(LanguageContext);
@@ -17,9 +17,11 @@ export default function PromoBanner() {
             <span className="rounded-lg bg-orange-500 px-3 py-1 text-sm font-bold text-white">
               {lang === "en" ? "First order" : "أول طلب"}
             </span>
-            <h3 className="text-3xl font-extrabold leading-tight text-[#2f2118] md:text-4xl">
-              {lang === "en" ? "Get 20% Off Your First Order!" : "احصل على خصم 20% على أول طلب"}
-            </h3>
+            <h2 className="text-3xl font-extrabold leading-tight text-[#2f2118] md:text-4xl">
+              {lang === "en"
+                ? "Get 20% Off Your First Order!"
+                : "احصل على خصم 20% على أول طلب"}
+            </h2>
             <p className="text-base leading-7 text-gray-600">
               {lang === "en"
                 ? "Enjoy your first coffee order with a special discount for a limited time."
@@ -34,7 +36,15 @@ export default function PromoBanner() {
           </div>
 
           <div className="flex w-full justify-center md:w-2/5">
-            <img src={imgbanner} alt="Promo Banner" className="max-h-64 w-full object-contain" />
+            <img
+              src={imgbanner}
+              alt="Promo Banner"
+              width="560"
+              height="256"
+              loading="lazy"
+              decoding="async"
+              className="max-h-64 w-full object-contain"
+            />
           </div>
         </div>
       </div>

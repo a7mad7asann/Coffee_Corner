@@ -1,23 +1,20 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaTwitter,
+} from "react-icons/fa";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { LanguageContext } from "../context/LanguageContext";
+import { useAppData } from "../context/AppDataContext";
 
 export default function Footer() {
   const { lang } = useContext(LanguageContext);
-  const [footer, setFooter] = useState(null);
-  const [links, setLinks] = useState([]);
-
-  useEffect(() => {
-    fetch("/data.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setFooter(data.footer[lang]);
-        setLinks(data.links?.[lang] || []);
-      })
-      .catch((err) => console.error("Error loading JSON:", err));
-  }, [lang]);
+  const { data } = useAppData();
+  const footer = data?.footer?.[lang] || null;
+  const links = data?.links?.[lang] || [];
 
   if (!footer) return null;
 
@@ -29,7 +26,10 @@ export default function Footer() {
   ];
 
   return (
-    <footer dir={lang === "ar" ? "rtl" : "ltr"} className="bg-[#fff8ef] pt-10 text-[#2f2118]">
+    <footer
+      dir={lang === "ar" ? "rtl" : "ltr"}
+      className="bg-[#fff8ef] pt-10 text-[#2f2118]"
+    >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-lg bg-[#2f2118] p-6 text-white shadow-xl md:p-8">
           <div className="absolute end-0 top-0 h-full w-1/2 bg-[url('/images/bg_img_hero.svg')] bg-cover bg-center opacity-10" />
@@ -39,7 +39,9 @@ export default function Footer() {
                 {lang === "en" ? "Ready for coffee?" : "جاهز للقهوة؟"}
               </p>
               <h2 className="mt-2 max-w-2xl text-3xl font-black leading-tight md:text-4xl">
-                {lang === "en" ? "Order your favorite cup now" : "اطلب كوبك المفضل الآن"}
+                {lang === "en"
+                  ? "Order your favorite cup now"
+                  : "اطلب كوبك المفضل الآن"}
               </h2>
             </div>
             <Link
@@ -54,8 +56,12 @@ export default function Footer() {
 
         <div className="grid gap-6 py-10 md:grid-cols-[1.1fr_0.8fr_1fr]">
           <div className="rounded-lg border border-[#ead8ca] bg-white p-6 shadow-sm">
-            <h2 className="text-2xl font-black text-orange-500">{footer.company}</h2>
-            <p className="mt-3 max-w-sm leading-7 text-[#6f5a4e]">{footer.slogan}</p>
+            <h2 className="text-2xl font-black text-orange-500">
+              {footer.company}
+            </h2>
+            <p className="mt-3 max-w-sm leading-7 text-[#6f5a4e]">
+              {footer.slogan}
+            </p>
 
             <div className="mt-6 flex gap-3">
               {socialLinks.map((social) => {
@@ -114,7 +120,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-between gap-3 border-t border-[#ead8ca] py-5 text-sm text-[#8a7468] md:flex-row md:items-center">
+        <div className="flex flex-col justify-between gap-3 border-t border-[#ead8ca] py-5 text-sm text-[#6f5a4e] md:flex-row md:items-center">
           <p>{footer.copyright}</p>
           <p>{footer.follow}</p>
         </div>
